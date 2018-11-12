@@ -11,6 +11,7 @@ import org.jgrapht.generate.GraphGenerator;
 import org.jgrapht.graph.*;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import org.apache.log4j.Logger;
 import org.jgrapht.util.SupplierUtil;
@@ -31,7 +32,7 @@ public class Controller {
 	//количество велосипедистов
 	private int NUMBER_OF_BICYCLES;
 	//Максимальное время доставки
-	private int MAX_DELIVERY_TIME;
+	private int AVG_DELIVERY_TIME;
 	//Количество вершин
 	private int NUMBER_OF_NODES;
 	//Количество ребер
@@ -45,17 +46,17 @@ public class Controller {
      */
 	public Controller(String... param) {
 	    //Если кстановлен параметр, устанавливается уровень лога DEBUG
-	    if(param[0].equals("-d")){
+	    if(param.length > 0 && param[0].equals("-d")){
 	        logger.setLevel(Level.DEBUG);
         }
-        else logger.setLevel(Level.ERROR);
+        else logger.setLevel(Level.WARN);
         logger.info("loading properties");
 	    loadProperties();
         logger.info("creating model");
 		this.model = new Model();
         logger.info("downloading data from file");
-        //downloadFromFile(new File(dataFile));
-        generateGraph(NUMBER_OF_NODES,NUMBER_OF_EDGES);
+        downloadFromFile(new File(dataFile));
+        //generateGraph(NUMBER_OF_NODES,NUMBER_OF_EDGES);
         logger.info("creating view");
         view = new View(model, param);
         logger.info("creating pizzeria");
@@ -75,7 +76,7 @@ public class Controller {
             NUMBER_OF_CARS = Integer.valueOf(prop.getProperty("NUMBER_OF_CARS", "10"));
             NUMBER_OF_MEN = Integer.valueOf(prop.getProperty("NUMBER_OF_MEN", "5"));
             NUMBER_OF_BICYCLES = Integer.valueOf(prop.getProperty("NUMBER_OF_BICYCLES", "5"));
-            MAX_DELIVERY_TIME = Integer.valueOf(prop.getProperty("MAX_DELIVERY_TIME", "5"));
+            AVG_DELIVERY_TIME = Integer.valueOf(prop.getProperty("AVG_DELIVERY_TIME", "5"));
             NUMBER_OF_NODES = Integer.valueOf(prop.getProperty("NUMBER_OF_NODES", "10"));
             NUMBER_OF_EDGES = Integer.valueOf(prop.getProperty("NUMBER_OF_EDGES", "15"));
             inputStream.close();
@@ -187,7 +188,7 @@ public class Controller {
         List<Point> points = new ArrayList<Point>();
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             while (reader.ready()){
                 String[] lines = reader.readLine().split(" ");
                 Point[] p = { new Point(Integer.valueOf(lines[0])), new Point(Integer.valueOf(lines[1]))};
@@ -245,13 +246,14 @@ public class Controller {
      * Симуляция работы пиццерии
      */
 	public void loop(){
+	    int alarm = 0;
 		Pizzeria pizzeria = model.getPizzeria();
 		List<Delivering> delivers = pizzeria.getDelivers();
         Random random = new Random();
         //Генерация заказов
         logger.info("creating orders");
         for (int i = 0; i < NUMBER_OF_ORDERS; i++) {
-            pizzeria.addOrder(new Order(i+1, model.getRandomPoint(), random.nextInt(MAX_DELIVERY_TIME)+MAX_DELIVERY_TIME*(i+1)/2));
+            pizzeria.addOrder(new Order(i+1, model.getRandomPoint(), random.nextInt(AVG_DELIVERY_TIME)+ AVG_DELIVERY_TIME *(i+1)/2));
         }
         //Генерация доставщиков
         logger.info("creating delivers");
@@ -276,6 +278,11 @@ public class Controller {
             double minTime = currentOrder.getTime() - currentTime;
             GraphWalk<Point, Road> optimalWay = GraphWalk.emptyWalk(emptyGraph);
             Delivering optimalDeliver = null;
+            if(currentTime+ AVG_DELIVERY_TIME > currentOrder.getTime()){
+                logger.warn("order cannot be delivered in time. Delaying order");
+                currentOrder.delay(AVG_DELIVERY_TIME);
+                alarm++;
+            }
             //Для всех видов транспорта расчитывается оптимальный путь
             for(Transport transport : Transport.values()){
                 GraphWalk<Point, Road> way = (GraphWalk<Point, Road>)findWay(start, currentOrder.getLocation(), transport);
@@ -317,6 +324,9 @@ public class Controller {
                     }
                 }
             }
+        }
+        if(alarm>NUMBER_OF_ORDERS/2){
+            logger.warn("Too many alarms. Increase amount of delivers");
         }
         logger.info("simulating complete");
 	}

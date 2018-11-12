@@ -1,5 +1,10 @@
-0 1 1000 CAR BICYCLE MAN First Street
-0 2 1800 CAR BICYCLE MAN Second Street
-1 3 600 CAR MAN Third Street
-2 3 1200 CAR BICYCLE MAN Forth Street
-3 4 1000 CAR BICYCLE Fifth Street
+0 1 1000 CAR BICYCLE MAN First street
+0 2 200 CAR BICYCLE MAN Second street
+1 3 200 CAR MAN Third street
+2 3 200 CAR BICYCLE MAN Forth street
+3 4 150 CAR BICYCLE Fifth street
+1 4 200 CAR BICYCLE MAN Sixth street
+2 5 100 CAR BICYCLE MAN Seventh street
+5 6 200 CAR MAN Eighth street
+4 6 120 CAR BICYCLE MAN Nineth street
+3 6 100 CAR BICYCLE Tenth street

@@ -66,4 +66,11 @@ public class Order {
         return location;
     }
 
+    /**
+     * Откладывает доставку на время
+     * @param extraTime - время
+     */
+    public void delay(double extraTime){
+        time+=extraTime;
+    }
 }

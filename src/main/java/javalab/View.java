@@ -25,7 +25,7 @@ public class View{
 	 */
 	public View(Model model, String... param) {
 		this.model = model;
-		if(param[0].equals("-d")){
+		if(param.length > 0 && param[0].equals("-d")){
 			logger.setLevel(Level.INFO);
 		}
 		else {
