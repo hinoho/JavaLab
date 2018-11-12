@@ -1,0 +1,5 @@
+0 1 1000 CAR BICYCLE MAN First Street
+0 2 1800 CAR BICYCLE MAN Second Street
+1 3 600 CAR MAN Third Street
+2 3 1200 CAR BICYCLE MAN Forth Street
+3 4 1000 CAR BICYCLE Fifth Street
