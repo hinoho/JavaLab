@@ -63,15 +63,32 @@ public class View{
 	 * Запрашивет у пользоватеся начальную или конечную точку
 	 */
 	public Point askPoint(){
-
-		System.out.println("Выберите номер точки для пиццерии:");
-		//Вывод всех существующих точек
-		for(Point point : model.getPoints()){
-			System.out.println(point.toString());
+		int numberOfPoint = -1;
+		String inputString;
+		Point location=null;
+		while (location==null) {
+			try {
+				System.out.println("Выберите номер точки для пиццерии:");
+				//Вывод всех существующих точек
+				for (Point point : model.getPoints()) {
+					System.out.println(point.toString());
+				}
+				//Проверка, является ли строка числом
+				inputString = scanner.nextLine();
+				numberOfPoint = Integer.parseInt(inputString);
+				//Проверка существет ли данная точка
+				if (numberOfPoint <= 0 || numberOfPoint > model.getPoints().size()) {
+					logger.error("Данной точки не существует");
+				} else {
+					location = model.getPoints().get(numberOfPoint - 1);
+				}
+			} catch (NumberFormatException e) {
+				logger.error("Введите число");
+			}
 		}
-		Point point = model.getPoints().get(scanner.nextInt()-1);
-		logger.info("Местонахождение пиццерии - " + point.toString());
-		return point;
+
+		logger.info("Местонахождение пиццерии - " + location.toString());
+		return location;
 	}
 
 	/**
