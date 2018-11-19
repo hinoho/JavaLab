@@ -6,7 +6,7 @@ import java.util.Objects;
  * Точка - место пересечений дорог
  */
 public class Point {
-    private int id;
+    private final int id;
 
     /**
      * Оздает новый экземпляр класса с номером
