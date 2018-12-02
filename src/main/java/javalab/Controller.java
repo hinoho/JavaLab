@@ -1,5 +1,6 @@
 package javalab;
 
+import javafx.util.Pair;
 import javalab.map.*;
 import javalab.pizzeria.*;
 import org.apache.log4j.Level;
@@ -37,6 +38,7 @@ public class Controller {
 	private int NUMBER_OF_NODES;
 	//Количество ребер
 	private int NUMBER_OF_EDGES;
+	private double TIME_FOR_STOP = 5;
 	private Model model;
 	private View view;
 
@@ -268,51 +270,67 @@ public class Controller {
         }
         LinkedList<Order> orders = pizzeria.getOrders();
         int currentTime = 0;
-        SimpleWeightedGraph<Point, Road> emptyGraph = new SimpleWeightedGraph<Point, Road>(Road.class);
-        Order currentOrder = orders.poll();
         logger.info("simulating delivering");
         Point start = pizzeria.getLocation();
         int numberOfFreeDelivers = NUMBER_OF_CARS+NUMBER_OF_MEN+NUMBER_OF_BICYCLES;
-        while (!currentOrder.isCompleted()){
+        List<Order> activeOrders = new LinkedList<>();
+        while (true){
             currentTime++;
-            double minTime = currentOrder.getTime() - currentTime;
-            GraphWalk<Point, Road> optimalWay = GraphWalk.emptyWalk(emptyGraph);
-            Delivering optimalDeliver = null;
-            if(currentTime+ AVG_DELIVERY_TIME > currentOrder.getTime()){
-                logger.warn("order cannot be delivered in time. Delaying order");
-                currentOrder.delay(AVG_DELIVERY_TIME);
-                alarm++;
+            boolean isDone = true;
+            for(Order order : orders){
+                if(!order.isClose()){
+                    isDone = false;
+                }
+                if(!order.isClose() && order.getTime()<=currentTime && !activeOrders.contains(order)){
+                    activeOrders.add(order);
+                }
             }
-            //Для всех видов транспорта расчитывается оптимальный путь
-            for(Transport transport : Transport.values()){
-                GraphWalk<Point, Road> way = (GraphWalk<Point, Road>)findWay(start, currentOrder.getLocation(), transport);
-                if(way!=null && way.getWeight()>0 && way.getWeight() < minTime) {
-                    minTime = way.getWeight();
-                    //Из свободных доставщиковВыбирается доставщик с минимальным путем
-                    for(Delivering deliver : delivers){
-                        if(deliver.getTransport().equals(transport) && deliver.isFree()){
-                            optimalDeliver = deliver;
-                            optimalWay = way;
-                            break;
-                        }
+            if(isDone){
+                break;
+            }
+            ListIterator<Order>iterator = activeOrders.listIterator();
+            while(iterator.hasNext()){
+                Order firstOrder = iterator.next();
+                double minTime = firstOrder.getTime() + AVG_DELIVERY_TIME - currentTime;
+                if(currentTime+ AVG_DELIVERY_TIME < firstOrder.getTime()){
+                    logger.warn("order cannot be delivered in time. Delaying order");
+                    firstOrder.delay(AVG_DELIVERY_TIME);
+                    alarm++;
+                }
+                Pair<GraphWalk<Point, Road>, Delivering> pair = getOptimalWay(minTime,start,firstOrder.getLocation());
+                GraphWalk<Point, Road> firstWay = pair.getKey();
+                Delivering optimalDeliver = pair.getValue();
+                if(!firstWay.isEmpty() && iterator.hasNext()){
+                    Order secondOrder = iterator.next();
+                    //путь от первого заказа
+                    GraphWalk<Point, Road> secondWay = (GraphWalk<Point, Road>) findWay(firstOrder.getLocation(), secondOrder.getLocation(), optimalDeliver.getTransport());
+                    if(!firstWay.isEmpty() && !secondWay.isEmpty() && (secondWay.getWeight()+firstWay.getWeight() + TIME_FOR_STOP + currentTime < secondOrder.getTime() + AVG_DELIVERY_TIME)){
+                        iterator.remove();
+                        iterator.previous();
+                        iterator.remove();
+                        view.show(firstWay.getEdgeList(),secondWay.getEdgeList(),firstOrder,secondOrder,optimalDeliver,currentTime+firstWay.getWeight(),currentTime+secondWay.getWeight());
+                        GraphWalk<Point, Road> wayBack = (GraphWalk<Point, Road>) findWay(secondOrder.getLocation(), pizzeria.getLocation(), optimalDeliver.getTransport());
+                        optimalDeliver.setTime(currentTime + firstWay.getWeight() + TIME_FOR_STOP + secondWay.getWeight() + TIME_FOR_STOP + wayBack.getWeight());
+                        optimalDeliver.setFree(false);
+                        numberOfFreeDelivers--;
+                        firstOrder.setClose(true);
+                        secondOrder.setClose(true);
                     }
                 }
-            }
-            if(!optimalWay.isEmpty()) {
-                view.show(optimalWay.getEdgeList(), currentOrder, optimalDeliver, currentTime+minTime, currentOrder.getTime());
-                optimalDeliver.setTime(currentTime + minTime*2);
-                optimalDeliver.setFree(false);
-                currentOrder.setCompleted(true);
-                if(orders.size()>0){
-                    currentOrder=orders.poll();
+                else if(!firstWay.isEmpty()) {
+                    iterator.remove();
+                    view.show(firstWay.getEdgeList(), firstOrder, optimalDeliver, currentTime+firstWay.getWeight());
+                    optimalDeliver.setTime(currentTime + firstWay.getWeight()*2 + TIME_FOR_STOP);
+                    optimalDeliver.setFree(false);
+                    firstOrder.setClose(true);
+                    numberOfFreeDelivers--;
                 }
-                numberOfFreeDelivers--;
-            }
-            else {
-                //Если все доставщикик свободны, но доставка не осущствляется - доставка не возможна
-                if(numberOfFreeDelivers==NUMBER_OF_CARS+NUMBER_OF_MEN+NUMBER_OF_BICYCLES){
-                    view.error();
-                    break;
+                else {
+                    //Если все доставщикик свободны, но доставка не осущствляется - доставка не возможна
+                    if(numberOfFreeDelivers==NUMBER_OF_CARS+NUMBER_OF_MEN+NUMBER_OF_BICYCLES){
+                        view.error();
+                        break;
+                    }
                 }
             }
             //обновляется статус доставщиков
@@ -330,4 +348,27 @@ public class Controller {
         }
         logger.info("simulating complete");
 	}
+
+	public Pair<GraphWalk<Point, Road>, Delivering> getOptimalWay(double minTime, Point start, Point end ){
+        //Для всех видов транспорта расчитывается оптимальный путь
+        SimpleWeightedGraph<Point, Road> emptyGraph = new SimpleWeightedGraph<Point, Road>(Road.class);
+        GraphWalk<Point, Road> optimalWay = GraphWalk.emptyWalk(emptyGraph);
+        Delivering optimalDeliver = null;
+        for(Transport transport : Transport.values()){
+            GraphWalk<Point, Road> way = (GraphWalk<Point, Road>)findWay(start, end, transport);
+            if(way!=null && way.getWeight()>0 && way.getWeight() < minTime) {
+                minTime = way.getWeight();
+                //Из свободных доставщиковВыбирается доставщик с минимальным путем
+                List<Delivering> delivers = model.getPizzeria().getDelivers();
+                for(Delivering deliver : delivers){
+                    if(deliver.getTransport().equals(transport) && deliver.isFree()){
+                        optimalDeliver = deliver;
+                        optimalWay = way;
+                        break;
+                    }
+                }
+            }
+        }
+        return new Pair<>(optimalWay,optimalDeliver);
+    }
 }

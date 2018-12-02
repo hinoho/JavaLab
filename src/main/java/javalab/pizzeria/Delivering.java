@@ -12,7 +12,8 @@ public class Delivering {
 	//Время, когда освободится доставщик
 	protected double time = 0;
 	protected boolean isFree = true;
-
+	//Время, на которое опаздывает доставщик
+	protected double delay = 0;
 	/**
 	 * Создавет новый экземпляр доставщика
 	 * @param name - имя доставщика
@@ -59,6 +60,14 @@ public class Delivering {
 	 */
 	public Transport getTransport() {
 		return transport;
+	}
+
+	public double getDelay() {
+		return delay;
+	}
+
+	public void setDelay(double delay) {
+		this.delay = delay;
 	}
 
 	/**

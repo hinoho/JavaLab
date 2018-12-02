@@ -8,10 +8,19 @@ import javalab.map.Point;
 public class Order {
     private Point location;
     private int id;
+    //активен ли заказ
+    private boolean isClose = false;
     //Время, когда будет сделан заказ
     private double time;
-    //Статус заказа, был ли он доставлен
-    private boolean isCompleted = false;
+
+
+    public boolean isClose() {
+        return isClose;
+    }
+
+    public void setClose(boolean close) {
+        isClose = close;
+    }
 
     /**
      * Создает новый экземпляр заказа
@@ -23,22 +32,6 @@ public class Order {
         this.id = id;
         this.location = location;
         this.time = timeBeforeOrder;
-    }
-
-    /**
-     * Возвращает статус заказа
-     * @return статус заказа
-     */
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    /**
-     * Устанавливает статус заказа
-     * @param completed - статус заказа
-     */
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
     }
 
     /**

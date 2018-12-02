@@ -39,27 +39,46 @@ public class View{
 	 * @param order - заказ
 	 * @param transport - доставщик
 	 * @param time - время доставки
-	 * @param maxTime - время, до которого должен быть доставлен
 	 */
-	public void show(List<Road> way, Order order, Delivering transport, double time, double maxTime) {
+	public void show(List<Road> way, Order order, Delivering transport, double time) {
 		StringBuilder stringBuilder = new StringBuilder("Заказ №" + order.getId() + '\n' +
 				"Доставка в точку " + order.getLocation().getId() + '\n' +
 				"Будет доставлен в " + Math.round(time) + '\n' +
-				"Должен быть доставлен не позднее " + Math.round(maxTime+30) + '\n' +
+				"Должен быть доставлен не позднее " + Math.round(order.getTime()+30) + '\n' +
 				"Доставляет " + transport.getName() +'\n');
-		if(way.isEmpty()){
-			logger.warn("Не удалось найти путь");
+
+		stringBuilder.append("Путь:\n");
+		for (Road road : way) {
+			stringBuilder.append(road.toString() + "\n");
 		}
-		else {
-			stringBuilder.append("Путь:\n");
-			for (Road road : way) {
-				stringBuilder.append(road.toString() + "\n");
-			}
-			logger.info(stringBuilder);
-		}
+		logger.info(stringBuilder);
 	}
 
-	/**
+	public void show(List<Road> way1, List<Road> way2, Order order1, Order order2, Delivering transport, double time1, double time2) {
+		StringBuilder stringBuilder = new StringBuilder(
+				"Заказ №" + order1.getId() + " и Заказ №" + order2.getId() + '\n' +
+				"Заказ №" + order1.getId() + ":" + '\n' +
+				"Доставка в точку " + order1.getLocation().getId() + '\n' +
+				"Будет доставлен в " + Math.round(time1) + '\n' +
+				"Должен быть доставлен не позднее " + Math.round(order1.getTime()+30) + '\n' +
+				"Заказ №" + order2.getId() + ":" +'\n' +
+				"Доставка в точку " + order2.getLocation().getId() + '\n' +
+				"Будет доставлен в " + Math.round(time2) + '\n' +
+				"Должен быть доставлен не позднее " + Math.round(order2.getTime()+30) + '\n' +
+				"Доставляет " + transport.getName() +'\n');
+
+		stringBuilder.append("Путь до первого заказа:\n");
+		for (Road road : way1) {
+			stringBuilder.append(road.toString() + "\n");
+		}
+		stringBuilder.append("Путь до второго заказа:\n");
+		for (Road road : way2) {
+			stringBuilder.append(road.toString() + "\n");
+		}
+		logger.info(stringBuilder);
+	}
+
+	/**gfvvvvvvvvvv
 	 * Запрашивет у пользоватеся начальную или конечную точку
 	 */
 	public Point askPoint(){
