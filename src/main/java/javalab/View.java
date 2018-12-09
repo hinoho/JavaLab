@@ -1,8 +1,35 @@
 package javalab;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 
+import javafx.scene.Cursor;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+
+import javafx.stage.WindowEvent;
 import javalab.map.Point;
 import javalab.map.Road;
 import javalab.pizzeria.Delivering;
@@ -14,7 +41,7 @@ import org.apache.log4j.Logger;
  * Представление отображает запрашиваемую информацию на экран
  *
  */
-public class View{
+public class View extends Application implements Runnable{
 	private Model model;
 	private static Scanner scanner = new Scanner(System.in);
 	private final static Logger logger = Logger.getLogger(View.class);
@@ -31,6 +58,10 @@ public class View{
 		else {
 			logger.setLevel(Level.ERROR);
 		}
+	}
+
+	public View(){
+
 	}
 
 	/**
@@ -78,7 +109,7 @@ public class View{
 		logger.info(stringBuilder);
 	}
 
-	/**gfvvvvvvvvvv
+	/**
 	 * Запрашивет у пользоватеся начальную или конечную точку
 	 */
 	public Point askPoint(){
@@ -117,4 +148,111 @@ public class View{
 		logger.error("Не возможно доставлять пиццу так далеко, измените настройки");
 	}
 
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+
+		FlowPane fp = new FlowPane(50,50);
+		fp.setOrientation(Orientation.VERTICAL);
+		fp.setAlignment(Pos.BASELINE_CENTER);
+		Scene scene = new Scene(fp, 1000, 500);
+		primaryStage.setTitle("Доставка пиццы");
+		primaryStage.setScene(scene);
+
+		//menubar
+		MenuBar menuBar = new MenuBar();
+		Menu menuAbout = new Menu("О программе");
+		menuBar.getMenus().addAll(menuAbout);
+		menuBar.useSystemMenuBarProperty();
+		menuBar.setPrefWidth(fp.getWidth());
+		fp.getChildren().add(menuBar);
+
+		menuAbout.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Stage stage = new Stage();
+				Scene scene = new Scene(new VBox());
+				stage.setTitle("popup");
+				stage.setScene(scene);
+				stage.show();
+			}
+		});
+
+
+		/*
+		* order part
+	 	*/
+
+		//textfield
+		HBox orderDetailBox = new HBox(50);
+		orderDetailBox.setPadding(new Insets(0,20,20,20));
+		Label placeOrderLabel = new Label("В какую точку заказ:");
+		final TextField textWhere = new TextField();
+		textWhere.setPrefWidth(100);
+		orderDetailBox.getChildren().add(placeOrderLabel);
+		orderDetailBox.getChildren().add(textWhere);
+		fp.getChildren().add(orderDetailBox);
+
+		textWhere.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+
+			}
+		});
+
+		//button
+		HBox makeOrderBox = new HBox(50);
+		makeOrderBox.setPadding(new Insets(0,20,20,20));
+		final Label orderStatusLabel = new Label("Сделайте заказ");
+		makeOrderBox.getChildren().add(orderStatusLabel);
+
+		Button orderButton = new Button("Сделать заказ");
+		makeOrderBox.getChildren().add(orderButton);
+
+		orderButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				orderStatusLabel.setText("Заказ поступил в систему");
+				textWhere.setText("");
+			}
+		});
+
+		fp.getChildren().add(makeOrderBox);
+
+		/*
+		* map
+		* */
+		Image mapImage = new Image("file: /mappicture.jpg");
+		//Image mapImage = new Image(getClass().getResourceAsStream("file: /Users/asinecynalake/IdeaProjects/JavaLab/src/main/resources/mappicture.jpg"));
+		ImageView mapView = new ImageView(mapImage);
+		mapView.setCache(true);
+		mapView.setX(1000);
+		mapView.setImage(mapImage);
+		fp.getChildren().add(mapView);
+		System.out.println("Image loaded? " + !mapImage.isError());
+
+		//separator
+		Separator sep = new Separator();
+		sep.prefWidth(fp.getHeight());
+		fp.getChildren().add(sep);
+
+		//order info
+		Label newOrderLabel = new Label("Заказ поступил в точку: ");
+		newOrderLabel.setText(textWhere.getText());
+		fp.getChildren().add(newOrderLabel);
+
+		primaryStage.show();
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				Platform.exit();
+				System.exit(0);
+			}
+		});
+	}
+
+	@Override
+	public void run()  {
+		Application.launch();
+
+	}
 }

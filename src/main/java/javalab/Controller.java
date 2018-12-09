@@ -21,7 +21,7 @@ import org.jgrapht.util.SupplierUtil;
  * Контроллер перенаправлет запросы пользователя модели для поиска кратчайшего маршрута и
  * представлению - для вывода информации об этом маршруте
  */
-public class Controller {
+public class Controller implements Runnable{
     final static Logger logger = Logger.getLogger(Controller.class);
     private String dataFile;
     //количества заказов
@@ -41,6 +41,10 @@ public class Controller {
 	private double TIME_FOR_STOP = 5;
 	private Model model;
 	private View view;
+
+    public View getView() {
+        return view;
+    }
 
     /**
      * Создает новый экземпляр контроллера
@@ -247,7 +251,8 @@ public class Controller {
     /**
      * Симуляция работы пиццерии
      */
-	public void loop(){
+
+	public void run(){
 	    int alarm = 0;
 		Pizzeria pizzeria = model.getPizzeria();
 		List<Delivering> delivers = pizzeria.getDelivers();
@@ -371,4 +376,5 @@ public class Controller {
         }
         return new Pair<>(optimalWay,optimalDeliver);
     }
+
 }
