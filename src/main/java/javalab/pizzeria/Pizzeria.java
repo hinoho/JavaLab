@@ -53,8 +53,8 @@ public class Pizzeria {
      * Добавляет заказ
      * @param order - заказ
      */
-    public void addOrder(Order order){
-        orders.add(order);
+    public void addOrder(Point location){
+        orders.add(new Order(orders.size()+1,location, System.currentTimeMillis()));
     }
 
     /**

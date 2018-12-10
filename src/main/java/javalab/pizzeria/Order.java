@@ -28,7 +28,7 @@ public class Order {
      * @param id - номер заказ
      * @param timeBeforeOrder - время заказа
      */
-    public Order(int id, Point location, int timeBeforeOrder) {
+    public Order(int id, Point location, long timeBeforeOrder) {
         this.id = id;
         this.location = location;
         this.time = timeBeforeOrder;

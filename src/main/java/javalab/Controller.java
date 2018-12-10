@@ -41,10 +41,7 @@ public class Controller implements Runnable{
 	private double TIME_FOR_STOP = 5;
 	private Model model;
 	private View view;
-
-    public View getView() {
-        return view;
-    }
+	private Pizzeria pizzeria;
 
     /**
      * Создает новый экземпляр контроллера
@@ -65,8 +62,21 @@ public class Controller implements Runnable{
         //generateGraph(NUMBER_OF_NODES,NUMBER_OF_EDGES);
         logger.info("creating view");
         view = new View(model, param);
+        view.setController(this);
         logger.info("creating pizzeria");
-		model.setPizzeria(new Pizzeria(view.askPoint()));
+		model.setPizzeria(new Pizzeria(model.getPoints().get(0)));
+        pizzeria = model.getPizzeria();
+        //Генерация доставщиков
+        logger.info("creating delivers");
+        for (int i = 0; i < NUMBER_OF_CARS; i++) {
+            pizzeria.addDelivering(new Car("Машина №" + (i+1)));
+        }
+        for (int i = 0; i < NUMBER_OF_BICYCLES; i++) {
+            pizzeria.addDelivering(new Bicycle("Велосепидист №" + (i+1)));
+        }
+        for (int i = 0; i < NUMBER_OF_MEN; i++) {
+            pizzeria.addDelivering(new Man("Человек №" + (i+1)));
+        }
 	}
 
     /**
@@ -90,6 +100,14 @@ public class Controller implements Runnable{
         }catch (IOException e){
 	        logger.error("config loading failed", e);
         }
+    }
+
+    public View getView() {
+        return view;
+    }
+
+    public void addOrder(int point){
+	    model.addOrder(point);
     }
 
     /**
@@ -251,47 +269,20 @@ public class Controller implements Runnable{
     /**
      * Симуляция работы пиццерии
      */
+    @Override
+    public void run(){
+        int alarm = 0;
 
-	public void run(){
-	    int alarm = 0;
-		Pizzeria pizzeria = model.getPizzeria();
-		List<Delivering> delivers = pizzeria.getDelivers();
-        Random random = new Random();
-        //Генерация заказов
-        logger.info("creating orders");
-        for (int i = 0; i < NUMBER_OF_ORDERS; i++) {
-            pizzeria.addOrder(new Order(i+1, model.getRandomPoint(), random.nextInt(AVG_DELIVERY_TIME)+ AVG_DELIVERY_TIME *(i+1)/2));
-        }
-        //Генерация доставщиков
-        logger.info("creating delivers");
-        for (int i = 0; i < NUMBER_OF_CARS; i++) {
-            pizzeria.addDelivering(new Car("Машина №" + (i+1)));
-        }
-        for (int i = 0; i < NUMBER_OF_BICYCLES; i++) {
-            pizzeria.addDelivering(new Bicycle("Велосепидист №" + (i+1)));
-        }
-        for (int i = 0; i < NUMBER_OF_MEN; i++) {
-            pizzeria.addDelivering(new Man("Человек №" + (i+1)));
-        }
-        LinkedList<Order> orders = pizzeria.getOrders();
-        int currentTime = 0;
+        List<Order> orders = pizzeria.getOrders();
         logger.info("simulating delivering");
         Point start = pizzeria.getLocation();
-        int numberOfFreeDelivers = NUMBER_OF_CARS+NUMBER_OF_MEN+NUMBER_OF_BICYCLES;
         List<Order> activeOrders = new LinkedList<>();
         while (true){
-            currentTime++;
-            boolean isDone = true;
+            long currentTime = System.currentTimeMillis();
             for(Order order : orders){
-                if(!order.isClose()){
-                    isDone = false;
-                }
                 if(!order.isClose() && order.getTime()<=currentTime && !activeOrders.contains(order)){
                     activeOrders.add(order);
                 }
-            }
-            if(isDone){
-                break;
             }
             ListIterator<Order>iterator = activeOrders.listIterator();
             while(iterator.hasNext()){
@@ -317,7 +308,6 @@ public class Controller implements Runnable{
                         GraphWalk<Point, Road> wayBack = (GraphWalk<Point, Road>) findWay(secondOrder.getLocation(), pizzeria.getLocation(), optimalDeliver.getTransport());
                         optimalDeliver.setTime(currentTime + firstWay.getWeight() + TIME_FOR_STOP + secondWay.getWeight() + TIME_FOR_STOP + wayBack.getWeight());
                         optimalDeliver.setFree(false);
-                        numberOfFreeDelivers--;
                         firstOrder.setClose(true);
                         secondOrder.setClose(true);
                     }
@@ -328,33 +318,24 @@ public class Controller implements Runnable{
                     optimalDeliver.setTime(currentTime + firstWay.getWeight()*2 + TIME_FOR_STOP);
                     optimalDeliver.setFree(false);
                     firstOrder.setClose(true);
-                    numberOfFreeDelivers--;
-                }
-                else {
-                    //Если все доставщикик свободны, но доставка не осущствляется - доставка не возможна
-                    if(numberOfFreeDelivers==NUMBER_OF_CARS+NUMBER_OF_MEN+NUMBER_OF_BICYCLES){
-                        view.error();
-                        break;
-                    }
                 }
             }
             //обновляется статус доставщиков
-            for(Delivering delivering : delivers){
+            for(Delivering delivering : pizzeria.getDelivers()){
                 if(!delivering.isFree()){
                     if(currentTime>delivering.getTime()){
                         delivering.setFree(true);
-                        numberOfFreeDelivers++;
                     }
                 }
             }
+            if(alarm>pizzeria.getOrders().size()/2){
+                logger.warn("Too many alarms. Increase amount of delivers");
+            }
         }
-        if(alarm>NUMBER_OF_ORDERS/2){
-            logger.warn("Too many alarms. Increase amount of delivers");
-        }
-        logger.info("simulating complete");
-	}
 
-	public Pair<GraphWalk<Point, Road>, Delivering> getOptimalWay(double minTime, Point start, Point end ){
+    }
+
+    public Pair<GraphWalk<Point, Road>, Delivering> getOptimalWay(double minTime, Point start, Point end ){
         //Для всех видов транспорта расчитывается оптимальный путь
         SimpleWeightedGraph<Point, Road> emptyGraph = new SimpleWeightedGraph<Point, Road>(Road.class);
         GraphWalk<Point, Road> optimalWay = GraphWalk.emptyWalk(emptyGraph);
@@ -376,5 +357,6 @@ public class Controller implements Runnable{
         }
         return new Pair<>(optimalWay,optimalDeliver);
     }
+
 
 }

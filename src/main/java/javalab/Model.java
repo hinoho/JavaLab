@@ -28,6 +28,10 @@ public class Model {
 		return points;
 	}
 
+	public void addOrder(int point){
+
+		pizzeria.addOrder(points.get(point-1));
+	}
 	/**
 	 * Возвращает спико точек
 	 * @param points - список точек
