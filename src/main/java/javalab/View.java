@@ -223,7 +223,7 @@ public class View extends Application{
 
 		VBox mapox = new VBox();
 		mapox.setPadding(new Insets(0,30,0,30));
-		Image mapImage = new Image(new File("/home/alfia/IdeaProjects/javalab/src/main/resources/map.png").toURI().toString());
+		Image mapImage = new Image(new File("src/main/resources/map.png").toURI().toString());
 		ImageView mapView = new ImageView(mapImage);
 		mapView.setCache(true);
 		//mapView.setX(1000);

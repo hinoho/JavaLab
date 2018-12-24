@@ -1576,3 +1576,129 @@ Third street между Точка №2 и Точка №4
 Second street между Точка №1 и Точка №3
 Seventh street между Точка №3 и Точка №6
 
+2018-12-24 21:25:24 INFO  Controller:56 - loading properties
+2018-12-24 21:25:24 INFO  Controller:100 - loading complete
+2018-12-24 21:25:24 INFO  Controller:58 - creating model
+2018-12-24 21:25:24 INFO  Controller:60 - downloading data from file
+2018-12-24 21:25:24 INFO  Controller:205 - creating graphs
+2018-12-24 21:25:24 INFO  Controller:254 - downloading completed
+2018-12-24 21:25:24 INFO  Controller:63 - creating view
+2018-12-24 21:25:24 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:25:24 INFO  Controller:70 - creating delivers
+2018-12-24 21:26:34 INFO  Controller:56 - loading properties
+2018-12-24 21:26:34 INFO  Controller:100 - loading complete
+2018-12-24 21:26:34 INFO  Controller:58 - creating model
+2018-12-24 21:26:34 INFO  Controller:60 - downloading data from file
+2018-12-24 21:26:34 INFO  Controller:205 - creating graphs
+2018-12-24 21:26:34 INFO  Controller:254 - downloading completed
+2018-12-24 21:26:34 INFO  Controller:63 - creating view
+2018-12-24 21:26:34 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:26:34 INFO  Controller:70 - creating delivers
+2018-12-24 21:26:51 INFO  Controller:56 - loading properties
+2018-12-24 21:26:51 INFO  Controller:100 - loading complete
+2018-12-24 21:26:51 INFO  Controller:58 - creating model
+2018-12-24 21:26:51 INFO  Controller:60 - downloading data from file
+2018-12-24 21:26:51 INFO  Controller:205 - creating graphs
+2018-12-24 21:26:51 INFO  Controller:254 - downloading completed
+2018-12-24 21:26:51 INFO  Controller:63 - creating view
+2018-12-24 21:26:51 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:26:51 INFO  Controller:70 - creating delivers
+2018-12-24 21:27:00 INFO  Controller:56 - loading properties
+2018-12-24 21:27:00 INFO  Controller:100 - loading complete
+2018-12-24 21:27:00 INFO  Controller:58 - creating model
+2018-12-24 21:27:00 INFO  Controller:60 - downloading data from file
+2018-12-24 21:27:00 INFO  Controller:205 - creating graphs
+2018-12-24 21:27:00 INFO  Controller:254 - downloading completed
+2018-12-24 21:27:00 INFO  Controller:63 - creating view
+2018-12-24 21:27:00 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:27:00 INFO  Controller:70 - creating delivers
+2018-12-24 21:28:47 INFO  Controller:56 - loading properties
+2018-12-24 21:28:47 INFO  Controller:100 - loading complete
+2018-12-24 21:28:47 INFO  Controller:58 - creating model
+2018-12-24 21:28:47 INFO  Controller:60 - downloading data from file
+2018-12-24 21:28:47 INFO  Controller:205 - creating graphs
+2018-12-24 21:28:47 INFO  Controller:254 - downloading completed
+2018-12-24 21:28:47 INFO  Controller:63 - creating view
+2018-12-24 21:28:47 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:28:47 INFO  Controller:70 - creating delivers
+2018-12-24 21:28:59 INFO  Controller:56 - loading properties
+2018-12-24 21:28:59 INFO  Controller:100 - loading complete
+2018-12-24 21:28:59 INFO  Controller:58 - creating model
+2018-12-24 21:28:59 INFO  Controller:60 - downloading data from file
+2018-12-24 21:28:59 INFO  Controller:205 - creating graphs
+2018-12-24 21:28:59 INFO  Controller:254 - downloading completed
+2018-12-24 21:28:59 INFO  Controller:63 - creating view
+2018-12-24 21:28:59 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:28:59 INFO  Controller:70 - creating delivers
+2018-12-24 21:29:17 INFO  Controller:56 - loading properties
+2018-12-24 21:29:17 INFO  Controller:100 - loading complete
+2018-12-24 21:29:17 INFO  Controller:58 - creating model
+2018-12-24 21:29:17 INFO  Controller:60 - downloading data from file
+2018-12-24 21:29:17 INFO  Controller:205 - creating graphs
+2018-12-24 21:29:17 INFO  Controller:254 - downloading completed
+2018-12-24 21:29:17 INFO  Controller:63 - creating view
+2018-12-24 21:29:17 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:29:17 INFO  Controller:70 - creating delivers
+2018-12-24 21:29:26 INFO  Controller:56 - loading properties
+2018-12-24 21:29:26 INFO  Controller:100 - loading complete
+2018-12-24 21:29:26 INFO  Controller:58 - creating model
+2018-12-24 21:29:26 INFO  Controller:60 - downloading data from file
+2018-12-24 21:29:26 INFO  Controller:205 - creating graphs
+2018-12-24 21:29:26 INFO  Controller:254 - downloading completed
+2018-12-24 21:29:26 INFO  Controller:63 - creating view
+2018-12-24 21:29:26 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:29:26 INFO  Controller:70 - creating delivers
+2018-12-24 21:29:38 INFO  Controller:56 - loading properties
+2018-12-24 21:29:39 INFO  Controller:100 - loading complete
+2018-12-24 21:29:39 INFO  Controller:58 - creating model
+2018-12-24 21:29:39 INFO  Controller:60 - downloading data from file
+2018-12-24 21:29:39 INFO  Controller:205 - creating graphs
+2018-12-24 21:29:39 INFO  Controller:254 - downloading completed
+2018-12-24 21:29:39 INFO  Controller:63 - creating view
+2018-12-24 21:29:39 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:29:39 INFO  Controller:70 - creating delivers
+2018-12-24 21:31:49 INFO  Controller:56 - loading properties
+2018-12-24 21:31:49 INFO  Controller:100 - loading complete
+2018-12-24 21:31:49 INFO  Controller:58 - creating model
+2018-12-24 21:31:49 INFO  Controller:60 - downloading data from file
+2018-12-24 21:31:49 INFO  Controller:205 - creating graphs
+2018-12-24 21:31:49 INFO  Controller:254 - downloading completed
+2018-12-24 21:31:49 INFO  Controller:63 - creating view
+2018-12-24 21:31:49 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:31:49 INFO  Controller:70 - creating delivers
+2018-12-24 21:32:22 INFO  Controller:56 - loading properties
+2018-12-24 21:32:22 INFO  Controller:100 - loading complete
+2018-12-24 21:32:22 INFO  Controller:58 - creating model
+2018-12-24 21:32:22 INFO  Controller:60 - downloading data from file
+2018-12-24 21:32:22 INFO  Controller:205 - creating graphs
+2018-12-24 21:32:22 INFO  Controller:254 - downloading completed
+2018-12-24 21:32:22 INFO  Controller:63 - creating view
+2018-12-24 21:32:22 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:32:22 INFO  Controller:70 - creating delivers
+2018-12-24 21:46:34 INFO  Controller:56 - loading properties
+2018-12-24 21:46:34 INFO  Controller:100 - loading complete
+2018-12-24 21:46:34 INFO  Controller:58 - creating model
+2018-12-24 21:46:34 INFO  Controller:60 - downloading data from file
+2018-12-24 21:46:34 INFO  Controller:205 - creating graphs
+2018-12-24 21:46:34 INFO  Controller:254 - downloading completed
+2018-12-24 21:46:34 INFO  Controller:63 - creating view
+2018-12-24 21:46:34 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:46:34 INFO  Controller:70 - creating delivers
+2018-12-24 21:47:03 INFO  Controller:56 - loading properties
+2018-12-24 21:47:03 INFO  Controller:100 - loading complete
+2018-12-24 21:47:03 INFO  Controller:58 - creating model
+2018-12-24 21:47:03 INFO  Controller:60 - downloading data from file
+2018-12-24 21:47:03 INFO  Controller:205 - creating graphs
+2018-12-24 21:47:04 INFO  Controller:254 - downloading completed
+2018-12-24 21:47:04 INFO  Controller:63 - creating view
+2018-12-24 21:47:04 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:47:04 INFO  Controller:70 - creating delivers
+2018-12-24 21:47:12 INFO  Controller:56 - loading properties
+2018-12-24 21:47:12 INFO  Controller:100 - loading complete
+2018-12-24 21:47:12 INFO  Controller:58 - creating model
+2018-12-24 21:47:12 INFO  Controller:60 - downloading data from file
+2018-12-24 21:47:12 INFO  Controller:205 - creating graphs
+2018-12-24 21:47:12 INFO  Controller:254 - downloading completed
+2018-12-24 21:47:12 INFO  Controller:63 - creating view
+2018-12-24 21:47:12 INFO  Controller:66 - creating pizzeria
+2018-12-24 21:47:12 INFO  Controller:70 - creating delivers
