@@ -25,8 +25,8 @@ public class Model {
 		return data;
 	}
 
-	public void addData(int number, String start, String end, String time, String courier, boolean isDone){
-		data.add(new Data(number, start, end, time, courier,isDone));
+	public void addData(int number, String start, String end, String time, String courier){
+		data.add(new Data(number, start, end, time, courier,"нет"));
 	}
 
 	public class Data{
@@ -35,23 +35,23 @@ public class Model {
 		public String end;
 		public String time;
 		public String courier;
-		public boolean isDone;
+		public String status;
 
-		public Data(int number, String start, String end, String time, String courier, boolean isDone) {
+		public Data(int number, String start, String end, String time, String courier, String status) {
 			this.number = number;
 			this.start = start;
 			this.end = end;
 			this.time = time;
 			this.courier = courier;
-			this.isDone = isDone;
+			this.status = status;
 		}
 
-		public boolean isDone() {
-			return isDone;
+		public String getStatus() {
+			return status;
 		}
 
-		public void setDone(boolean done) {
-			isDone = done;
+		public void setStatus(String status) {
+			this.status = status;
 		}
 
 		public void setNumber(int number) {

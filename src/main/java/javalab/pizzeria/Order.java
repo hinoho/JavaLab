@@ -10,9 +10,26 @@ public class Order {
     private int id;
     //активен ли заказ
     private boolean isClose = false;
+    private boolean isDone = false;
     //Время, когда будет сделан заказ
     private double time;
+    private double doneTime;
 
+    public double getDoneTime() {
+        return doneTime;
+    }
+
+    public void setDoneTime(double doneTime) {
+        this.doneTime = doneTime;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
 
     public boolean isClose() {
         return isClose;

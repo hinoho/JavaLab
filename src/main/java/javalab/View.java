@@ -1,15 +1,14 @@
 package javalab;
 
+import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 
 import javafx.scene.control.Button;
@@ -25,11 +24,9 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javafx.stage.WindowEvent;
-import javalab.map.Point;
 import javalab.map.Road;
 import javalab.pizzeria.Delivering;
 import javalab.pizzeria.Order;
@@ -117,37 +114,6 @@ public class View extends Application{
 		logger.info(stringBuilder);
 	}
 
-	/**
-	 * Запрашивет у пользоватеся начальную или конечную точку
-	 */
-	public Point askPoint() {
-		int numberOfPoint = -1;
-		String inputString;
-		Point location = null;
-		while (location == null) {
-			try {
-				System.out.println("Выберите номер точки для пиццерии:");
-				//Вывод всех существующих точек
-				for (Point point : model.getPoints()) {
-					System.out.println(point.toString());
-				}
-				//Проверка, является ли строка числом
-				inputString = scanner.nextLine();
-				numberOfPoint = Integer.parseInt(inputString);
-				//Проверка существет ли данная точка
-				if (numberOfPoint <= 0 || numberOfPoint > model.getPoints().size()) {
-					logger.error("Данной точки не существует");
-				} else {
-					location = model.getPoints().get(numberOfPoint - 1);
-				}
-			} catch (NumberFormatException e) {
-				logger.error("Введите число");
-			}
-		}
-
-		logger.info("Местонахождение пиццерии - " + location.toString());
-		return location;
-	}
 
 	/**
 	 * Выводит сообщение об ошибке
@@ -163,7 +129,7 @@ public class View extends Application{
 		fp.setCache(false);
 		fp.setOrientation(Orientation.VERTICAL);
 		fp.setAlignment(Pos.BASELINE_CENTER);
-		Scene scene = new Scene(fp, 800, 800);
+		Scene scene = new Scene(fp, 1000, 1000);
 		primaryStage.setTitle("Доставка пиццы");
 		primaryStage.setScene(scene);
 
@@ -204,7 +170,7 @@ public class View extends Application{
 		 */
 
 		//textfield
-		HBox orderDetailBox = new HBox(50);
+		HBox orderDetailBox = new HBox(30);
 		orderDetailBox.setPadding(new Insets(0, 20, 20, 20));
 		Label placeOrderLabel = new Label("В какую точку заказ:");
 		final TextField textWhere = new TextField();
@@ -213,10 +179,13 @@ public class View extends Application{
 		orderDetailBox.getChildren().add(textWhere);
 		fp.getChildren().add(orderDetailBox);
 
+		HBox orderbox = new HBox();
+		orderbox.setMaxHeight(300);
+		fp.getChildren().add(orderbox);
 
 		//button
-		HBox makeOrderBox = new HBox(50);
-		makeOrderBox.setPadding(new Insets(0, 20, 20, 20));
+		HBox makeOrderBox = new HBox(30);
+		makeOrderBox.setPadding(new Insets(0, 20, 20, 10));
 		final Label orderStatusLabel = new Label("Сделайте заказ");
 		makeOrderBox.getChildren().add(orderStatusLabel);
 
@@ -245,22 +214,23 @@ public class View extends Application{
 		});
 
 
-		fp.getChildren().add(makeOrderBox);
+
+		orderbox.getChildren().add(makeOrderBox);
 
 		/*
 		 * map
 		 * */
 
 		VBox mapox = new VBox();
-		Image mapImage = new Image("file: ~/JavaLab/src/main/resources/mappp.jpg");
+		mapox.setPadding(new Insets(0,30,0,30));
+		Image mapImage = new Image(new File("/home/alfia/IdeaProjects/javalab/src/main/resources/map.png").toURI().toString());
 		ImageView mapView = new ImageView(mapImage);
 		mapView.setCache(true);
-		mapView.setX(1000);
+		//mapView.setX(1000);
 		mapView.setImage(mapImage);
 		fp.getChildren().add(mapView);
 		System.out.println("Image loaded? " + !mapImage.isError());
 		fp.getChildren().add(mapox);
-
 
 		//separator
 		Separator sep = new Separator();
@@ -280,19 +250,19 @@ public class View extends Application{
 		TableView
 		 */
 		VBox orderStatusBox = new VBox();
-		orderStatusBox.setPadding(new Insets(0,0,20,40));
+		orderStatusBox.setPadding(new Insets(0,0,20,0));
 		fp.getChildren().add(orderStatusBox);
 
 
 		//Button updateButton = new Button("Обновить данные");
 		//fp.getChildren().addAll(updateButton);
 		//orderStatusBox.getChildren().add(updateButton);
-		table.setMaxHeight(300);
-		table.setMaxWidth(800);
+		table.setMaxHeight(200);
+		table.setMaxWidth(672);
 
 		//table.setPadding(new Insets(20,20,20,20));
-		TableColumn<Model.Data, Integer> number = new TableColumn<Model.Data, Integer>("Номер заказа");
-		number.setMinWidth(100);
+		TableColumn<Model.Data, Integer> number = new TableColumn<Model.Data, Integer>("Номер");
+		number.setMinWidth(50);
 
 		TableColumn<Model.Data, String> start = new TableColumn<Model.Data, String>("Начальная точка");
 		start.setMinWidth(120);
@@ -304,21 +274,41 @@ public class View extends Application{
 		courier.setMinWidth(150);
 
 		TableColumn<Model.Data, String> time = new TableColumn<>("Время");
-		time.setMinWidth(100);
+		time.setMinWidth(120);
 
-        TableColumn<Model.Data, String> isDone = new TableColumn<>("Статус");
-        isDone.setMinWidth(50);
-
-		//TableColumn<Model.Data, Boolean> finished = new TableColumn<Order, Boolean>("Закончен");
+        TableColumn<Model.Data, String> status = new TableColumn<>("Закончен");
 
 		number.setCellValueFactory(new PropertyValueFactory<Model.Data, Integer>("number"));
 		start.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("start"));
 		end.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("end"));
 		courier.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("courier"));
 		time.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("time"));
-		isDone.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("isDone"));
+		status.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("status"));
+		status.setCellFactory(column -> {
+			return new 	TableCell<Model.Data, String>() {
+				@Override
+				protected void updateItem(String item, boolean empty) {
+					super.updateItem(item, empty);
+
+					setText(empty ? "" : getItem().toString());
+					setGraphic(null);
+
+					TableRow<Model.Data> currentRow = getTableRow();
+
+					if (!isEmpty()) {
+
+						if(item.equals("нет"))
+							currentRow.setStyle("-fx-background-color:lightcoral");
+						else
+							currentRow.setStyle("-fx-background-color:lightgreen");
+					}
+				}
+			};
+
+		});
+
 		table.setItems(FXCollections.observableArrayList(model.getData()));
-		table.getColumns().addAll(number, start, end, courier, time);
+		table.getColumns().addAll(number, start, end, courier, time, status);
 
 		orderStatusBox.getChildren().add(table);
 
@@ -345,6 +335,5 @@ public class View extends Application{
         long t=Math.round(time/1000);
         return t/60%60 + ":" + t%60;
     }
-
 }
 

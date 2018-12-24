@@ -38,7 +38,7 @@ public class Controller{
     private int NUMBER_OF_NODES;
     //Количество ребер
     private int NUMBER_OF_EDGES;
-    private double TIME_FOR_STOP = 5;
+    private double TIME_FOR_STOP = 5000;
     private Model model;
     private View view;
     private Pizzeria pizzeria;
@@ -103,83 +103,79 @@ public class Controller{
         }
     }
 
-    public View getView() {
-        return view;
-    }
-
     public void addOrder(int point){
         model.addOrder(point);
     }
 
-    /**
-     * Генерирует случайный граф
-     * @param numberOfNodes - количество вершин
-     * @param numberOfEdges - количество ребер
-     */
-    public void generateGraph(int numberOfNodes, int numberOfEdges){
-        SimpleWeightedGraph<Point, DefaultWeightedEdge> man = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
-        SimpleWeightedGraph<Point, DefaultWeightedEdge> bicycle = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
-        SimpleWeightedGraph<Point, DefaultWeightedEdge> car = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
-        List<Point> points = new ArrayList<Point>();
-
-        //Создается генератор графов
-        GraphGenerator<Integer, DefaultEdge, Integer> gen = new GnmRandomGraphGenerator<>(numberOfNodes, numberOfEdges, 0, false, false);
-        Graph<Integer, DefaultEdge> graph = new SimpleGraph<>(SupplierUtil.createIntegerSupplier(), SupplierUtil.createDefaultEdgeSupplier(), false);
-        //Генерируется граф
-        gen.generateGraph(graph);
-        //Создаются точки и добавляются на графы
-        for (int i = 0; i < numberOfNodes; ++i) {
-            Point point = new Point(i);
-            points.add(point);
-            man.addVertex(point);
-            bicycle.addVertex(point);
-            car.addVertex(point);
-        }
-
-        int i = 0;
-        Random random = new Random();
-        //На основе сгенерированного графа создаются графы дорог
-        for(DefaultEdge edge : graph.edgeSet()) {
-            List<Transport> types = new ArrayList<>();
-            Double length = random.nextDouble() * 1000;
-            String name = "Улица №" + ++i;
-            //Дороги для машин - 100%
-            types.add(Transport.CAR);
-            //Дороги для людей - 50%
-            if (random.nextInt() % 2 == 0) {
-                types.add(Transport.MAN);
-            }
-            //Дороги для велосипедистов - 33%
-            if (random.nextInt() % 2 == 0) {
-                types.add(Transport.BICYCLE);
-            }
-
-            Point start = new Point(graph.getEdgeSource(edge));
-            Point end = new Point(graph.getEdgeTarget(edge));
-            //Для каждого типа транспорта создается дорога и добавляется на соответсвующий граф
-            for (Transport transport : types) {
-                Road road = new Road(name, transport, length);
-                switch (transport) {
-                    case CAR:
-                        car.addEdge(start, end, road);
-                        car.setEdgeWeight(road, road.getTime());
-                        break;
-                    case BICYCLE:
-                        bicycle.addEdge(start, end, road);
-                        bicycle.setEdgeWeight(road, road.getTime());
-                        break;
-                    case MAN:
-                        man.addEdge(start, end, road);
-                        man.setEdgeWeight(road, road.getTime());
-                        break;
-                }
-            }
-        }
-        model.setMan(man);
-        model.setBicycle(bicycle);
-        model.setCar(car);
-        model.setPoints(points);
-    }
+//    /**
+//     * Генерирует случайный граф
+//     * @param numberOfNodes - количество вершин
+//     * @param numberOfEdges - количество ребер
+//     */
+//    public void generateGraph(int numberOfNodes, int numberOfEdges){
+//        SimpleWeightedGraph<Point, DefaultWeightedEdge> man = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+//        SimpleWeightedGraph<Point, DefaultWeightedEdge> bicycle = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+//        SimpleWeightedGraph<Point, DefaultWeightedEdge> car = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+//        List<Point> points = new ArrayList<Point>();
+//
+//        //Создается генератор графов
+//        GraphGenerator<Integer, DefaultEdge, Integer> gen = new GnmRandomGraphGenerator<>(numberOfNodes, numberOfEdges, 0, false, false);
+//        Graph<Integer, DefaultEdge> graph = new SimpleGraph<>(SupplierUtil.createIntegerSupplier(), SupplierUtil.createDefaultEdgeSupplier(), false);
+//        //Генерируется граф
+//        gen.generateGraph(graph);
+//        //Создаются точки и добавляются на графы
+//        for (int i = 0; i < numberOfNodes; ++i) {
+//            Point point = new Point(i);
+//            points.add(point);
+//            man.addVertex(point);
+//            bicycle.addVertex(point);
+//            car.addVertex(point);
+//        }
+//
+//        int i = 0;
+//        Random random = new Random();
+//        //На основе сгенерированного графа создаются графы дорог
+//        for(DefaultEdge edge : graph.edgeSet()) {
+//            List<Transport> types = new ArrayList<>();
+//            Double length = random.nextDouble() * 1000;
+//            String name = "Улица №" + ++i;
+//            //Дороги для машин - 100%
+//            types.add(Transport.CAR);
+//            //Дороги для людей - 50%
+//            if (random.nextInt() % 2 == 0) {
+//                types.add(Transport.MAN);
+//            }
+//            //Дороги для велосипедистов - 33%
+//            if (random.nextInt() % 2 == 0) {
+//                types.add(Transport.BICYCLE);
+//            }
+//
+//            Point start = new Point(graph.getEdgeSource(edge));
+//            Point end = new Point(graph.getEdgeTarget(edge));
+//            //Для каждого типа транспорта создается дорога и добавляется на соответсвующий граф
+//            for (Transport transport : types) {
+//                Road road = new Road(name, transport, length);
+//                switch (transport) {
+//                    case CAR:
+//                        car.addEdge(start, end, road);
+//                        car.setEdgeWeight(road, road.getTime());
+//                        break;
+//                    case BICYCLE:
+//                        bicycle.addEdge(start, end, road);
+//                        bicycle.setEdgeWeight(road, road.getTime());
+//                        break;
+//                    case MAN:
+//                        man.addEdge(start, end, road);
+//                        man.setEdgeWeight(road, road.getTime());
+//                        break;
+//                }
+//            }
+//        }
+//        model.setMan(man);
+//        model.setBicycle(bicycle);
+//        model.setCar(car);
+//        model.setPoints(points);
+//    }
 
     /**
      * Ищет кратчайший путь между двумя точками
@@ -301,27 +297,30 @@ public class Controller{
                     Order secondOrder = iterator.next();
                     //путь от первого заказа
                     GraphWalk<Point, Road> secondWay = (GraphWalk<Point, Road>) findWay(firstOrder.getLocation(), secondOrder.getLocation(), optimalDeliver.getTransport());
-                    if(!firstWay.isEmpty() && !secondWay.isEmpty() && (secondWay.getWeight()+firstWay.getWeight() + TIME_FOR_STOP + currentTime < secondOrder.getTime() + AVG_DELIVERY_TIME)){
+                    if(!firstWay.isEmpty() && !secondWay.isEmpty() && (secondWay.getWeight()*1000+firstWay.getWeight()*1000 + TIME_FOR_STOP + currentTime < secondOrder.getTime()*1000 + AVG_DELIVERY_TIME)){
                         iterator.remove();
                         iterator.previous();
                         iterator.remove();
-                        view.show(firstWay.getEdgeList(),secondWay.getEdgeList(),firstOrder,secondOrder,optimalDeliver,currentTime+firstWay.getWeight(),currentTime+secondWay.getWeight());
+                        view.show(firstWay.getEdgeList(),secondWay.getEdgeList(),firstOrder,secondOrder,optimalDeliver,currentTime+firstWay.getWeight()*1000,currentTime+secondWay.getWeight()*1000);
                         GraphWalk<Point, Road> wayBack = (GraphWalk<Point, Road>) findWay(secondOrder.getLocation(), pizzeria.getLocation(), optimalDeliver.getTransport());
-                        optimalDeliver.setTime(currentTime + firstWay.getWeight() + TIME_FOR_STOP + secondWay.getWeight() + TIME_FOR_STOP + wayBack.getWeight());
+                        optimalDeliver.setTime(currentTime + firstWay.getWeight()*1000 + TIME_FOR_STOP + secondWay.getWeight()*1000 + TIME_FOR_STOP + wayBack.getWeight()*1000);
                         optimalDeliver.setFree(false);
                         firstOrder.setClose(true);
                         secondOrder.setClose(true);
-
-                        model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName(),false);
-                        model.addData(secondOrder.getId(), start.toString(), secondOrder.getLocation().toString(), getTime(secondOrder.getTime()), optimalDeliver.getName(),false);
+                        firstOrder.setDoneTime(firstOrder.getTime()+firstWay.getWeight()*1000);
+                        secondOrder.setDoneTime(secondOrder.getTime()+firstWay.getWeight()*1000+TIME_FOR_STOP+secondWay.getWeight()*1000);
+                        model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName());
+                        model.addData(secondOrder.getId(), start.toString(), secondOrder.getLocation().toString(), getTime(secondOrder.getTime()), optimalDeliver.getName());
                     }
                 }
                 else if(!firstWay.isEmpty()) {
                     iterator.remove();
-                    model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName(),false);
-                    view.show(firstWay.getEdgeList(), firstOrder, optimalDeliver, currentTime+firstWay.getWeight());
-                    optimalDeliver.setTime(currentTime + firstWay.getWeight()*2 + TIME_FOR_STOP);
+                    model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName());
+                    view.show(firstWay.getEdgeList(), firstOrder, optimalDeliver, currentTime+firstWay.getWeight()*1000);
+
+                    optimalDeliver.setTime(currentTime + firstWay.getWeight()*2000 + TIME_FOR_STOP);
                     optimalDeliver.setFree(false);
+                    firstOrder.setDoneTime(firstOrder.getTime()+firstWay.getWeight()*1000);
                     firstOrder.setClose(true);
                 }
             }
@@ -333,9 +332,16 @@ public class Controller{
                     }
                 }
             }
+            for(Order order : orders){
+                if(!order.isDone()){
+                    if(currentTime > order.getDoneTime()){
+                        order.setDone(true);
+                    }
+                }
+            }
             for (Model.Data data:  model.getData()) {
-                if(orders.get(data.getNumber()-1).isClose())
-                data.setDone(true);
+                if(orders.get(data.getNumber()-1).isDone())
+                data.setStatus("да");
 
             }
             if(activeOrders.size()==0)isDone=true;
