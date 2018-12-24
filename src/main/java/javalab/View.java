@@ -3,16 +3,20 @@ package javalab;
 import java.util.List;
 import java.util.Scanner;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -36,15 +40,12 @@ import org.apache.log4j.Logger;
  * Представление отображает запрашиваемую информацию на экран
  *
  */
-public class View extends Application implements Runnable{
-	private Model model;
+public class View extends Application{
+	private static Model model;
 	private static Controller controller;
 	private static Scanner scanner = new Scanner(System.in);
 	private final static Logger logger = Logger.getLogger(View.class);
 
-	public void setController(Controller controller){
-		this.controller = controller;
-	}
 	/**
 	 * Создает новый экземпляр представления
 	 *
@@ -64,6 +65,10 @@ public class View extends Application implements Runnable{
 
 	}
 
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+
 	/**
 	 * Выводит найденный путь
 	 *
@@ -75,8 +80,8 @@ public class View extends Application implements Runnable{
 	public void show(List<Road> way, Order order, Delivering transport, double time) {
 		StringBuilder stringBuilder = new StringBuilder("Заказ №" + order.getId() + '\n' +
 				"Доставка в точку " + order.getLocation().getId() + '\n' +
-				"Будет доставлен в " + Math.round(time) + '\n' +
-				"Должен быть доставлен не позднее " + Math.round(order.getTime() + 30) + '\n' +
+				"Будет доставлен в " + getTime(time) + '\n' +
+				"Должен быть доставлен не позднее " + getTime(order.getTime() + 30000) + '\n' +
 				"Доставляет " + transport.getName() + '\n');
 
 		stringBuilder.append("Путь:\n");
@@ -87,16 +92,18 @@ public class View extends Application implements Runnable{
 	}
 
 	public void show(List<Road> way1, List<Road> way2, Order order1, Order order2, Delivering transport, double time1, double time2) {
+
+
 		StringBuilder stringBuilder = new StringBuilder(
 				"Заказ №" + order1.getId() + " и Заказ №" + order2.getId() + '\n' +
 						"Заказ №" + order1.getId() + ":" + '\n' +
 						"Доставка в точку " + order1.getLocation().getId() + '\n' +
-						"Будет доставлен в " + Math.round(time1) + '\n' +
-						"Должен быть доставлен не позднее " + Math.round(order1.getTime() + 30) + '\n' +
+						"Будет доставлен в " + getTime(time1) + '\n' +
+						"Должен быть доставлен не позднее " +getTime(order1.getTime() + 30000) + '\n' +
 						"Заказ №" + order2.getId() + ":" + '\n' +
 						"Доставка в точку " + order2.getLocation().getId() + '\n' +
-						"Будет доставлен в " + Math.round(time2) + '\n' +
-						"Должен быть доставлен не позднее " + Math.round(order2.getTime() + 30) + '\n' +
+						"Будет доставлен в " + getTime(time2) + '\n' +
+						"Должен быть доставлен не позднее " + getTime(order2.getTime() + 30000) + '\n' +
 						"Доставляет " + transport.getName() + '\n');
 
 		stringBuilder.append("Путь до первого заказа:\n");
@@ -151,11 +158,12 @@ public class View extends Application implements Runnable{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		final TableView<Model.Data> table = new TableView<Model.Data>();
 		FlowPane fp = new FlowPane(20, 20);
 		fp.setCache(false);
 		fp.setOrientation(Orientation.VERTICAL);
 		fp.setAlignment(Pos.BASELINE_CENTER);
-		Scene scene = new Scene(fp, 800, 500);
+		Scene scene = new Scene(fp, 800, 800);
 		primaryStage.setTitle("Доставка пиццы");
 		primaryStage.setScene(scene);
 
@@ -215,25 +223,27 @@ public class View extends Application implements Runnable{
 		final Button orderButton = new Button("Сделать заказ");
 		makeOrderBox.getChildren().add(orderButton);
 
-		final Label errLabel = new Label("Неправильно введена точка");
+		final Label errLabel = new Label("Неправильно введена точка!");
 		errLabel.setVisible(false);
-		fp.getChildren().add(errLabel);
+		makeOrderBox.getChildren().add(errLabel);
 		orderButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if ((Integer.valueOf(textWhere.getText()) >0) & (Integer.valueOf(textWhere.getText()) < 8) | (textWhere.getText().length() != 0)) {
+				if (!textWhere.getText().equals("") && (Integer.valueOf(textWhere.getText()) >0) & (Integer.valueOf(textWhere.getText()) < 8) && (textWhere.getText().length() != 0)) {
 					orderStatusLabel.setText("Заказ поступил в систему");
-					int orderPoint = Integer.valueOf(textWhere.getText());
+					controller.addOrder(Integer.valueOf(textWhere.getText()));
 					logger.info("added order");
 					textWhere.setText("");
+					controller.run();
 					errLabel.setVisible(false);
-					controller.addOrder(orderPoint);
+					table.setItems(FXCollections.observableArrayList(model.getData()));
 				}
 				else
 					errLabel.setVisible(true);
 				textWhere.setText("");
 			}
 		});
+
 
 		fp.getChildren().add(makeOrderBox);
 
@@ -263,25 +273,54 @@ public class View extends Application implements Runnable{
 		fp.getChildren().add(newOrderLabel);
 
 
-		//textarea
-		HBox orderBox = new HBox(20);
-		Label orderArea = new Label("Состояние заказов: ");
-		orderArea.setPadding(new Insets(0,20,20,20));
-		orderArea.setFont(Font.font("Times New Roman"));
-		String s = String.valueOf("Статусы заказа");
-
-		TextArea orderAreaStatus = new TextArea();
-		orderAreaStatus.setPadding(new Insets(0,70,0,70));
-		orderAreaStatus.setMaxHeight(100);
-		orderAreaStatus.setMaxWidth(500);
-
-		orderAreaStatus.setText(s);
-		//fp.getChildren().add(orderArea);
-		//fp.getChildren().add(orderAreaStatus);
-		orderBox.getChildren().addAll(orderArea, orderAreaStatus);
-		fp.getChildren().addAll(orderBox);
 
 		//fp.getChildren().addAll(orderBpx);
+
+		/*/
+		TableView
+		 */
+		VBox orderStatusBox = new VBox();
+		orderStatusBox.setPadding(new Insets(0,0,20,40));
+		fp.getChildren().add(orderStatusBox);
+
+
+		//Button updateButton = new Button("Обновить данные");
+		//fp.getChildren().addAll(updateButton);
+		//orderStatusBox.getChildren().add(updateButton);
+		table.setMaxHeight(300);
+		table.setMaxWidth(800);
+
+		//table.setPadding(new Insets(20,20,20,20));
+		TableColumn<Model.Data, Integer> number = new TableColumn<Model.Data, Integer>("Номер заказа");
+		number.setMinWidth(100);
+
+		TableColumn<Model.Data, String> start = new TableColumn<Model.Data, String>("Начальная точка");
+		start.setMinWidth(120);
+
+		TableColumn<Model.Data, String> end = new TableColumn<Model.Data, String>("Конечная точка");
+		end.setMinWidth(120);
+
+		TableColumn<Model.Data, String> courier = new TableColumn<Model.Data, String>("Транспорт");
+		courier.setMinWidth(150);
+
+		TableColumn<Model.Data, String> time = new TableColumn<>("Время");
+		time.setMinWidth(100);
+
+        TableColumn<Model.Data, String> isDone = new TableColumn<>("Статус");
+        isDone.setMinWidth(50);
+
+		//TableColumn<Model.Data, Boolean> finished = new TableColumn<Order, Boolean>("Закончен");
+
+		number.setCellValueFactory(new PropertyValueFactory<Model.Data, Integer>("number"));
+		start.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("start"));
+		end.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("end"));
+		courier.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("courier"));
+		time.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("time"));
+		isDone.setCellValueFactory(new PropertyValueFactory<Model.Data, String>("isDone"));
+		table.setItems(FXCollections.observableArrayList(model.getData()));
+		table.getColumns().addAll(number, start, end, courier, time);
+
+		orderStatusBox.getChildren().add(table);
 
 
 		primaryStage.show();
@@ -298,10 +337,14 @@ public class View extends Application implements Runnable{
 		Application.launch(args);
 	}
 
-	@Override
 	public void run() {
 		Application.launch();
 	}
+
+    public String getTime(double time){
+        long t=Math.round(time/1000);
+        return t/60%60 + ":" + t%60;
+    }
 
 }
 

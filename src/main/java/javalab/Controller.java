@@ -21,42 +21,42 @@ import org.jgrapht.util.SupplierUtil;
  * Контроллер перенаправлет запросы пользователя модели для поиска кратчайшего маршрута и
  * представлению - для вывода информации об этом маршруте
  */
-public class Controller implements Runnable{
+public class Controller{
     final static Logger logger = Logger.getLogger(Controller.class);
     private String dataFile;
     //количества заказов
-	private int NUMBER_OF_ORDERS;
-	//количество машин
-	private int NUMBER_OF_CARS;
-	//количество людей
-	private int NUMBER_OF_MEN;
-	//количество велосипедистов
-	private int NUMBER_OF_BICYCLES;
-	//Максимальное время доставки
-	private int AVG_DELIVERY_TIME;
-	//Количество вершин
-	private int NUMBER_OF_NODES;
-	//Количество ребер
-	private int NUMBER_OF_EDGES;
-	private double TIME_FOR_STOP = 5;
-	private Model model;
-	private View view;
-	private Pizzeria pizzeria;
+    private int NUMBER_OF_ORDERS;
+    //количество машин
+    private int NUMBER_OF_CARS;
+    //количество людей
+    private int NUMBER_OF_MEN;
+    //количество велосипедистов
+    private int NUMBER_OF_BICYCLES;
+    //Максимальное время доставки
+    private int AVG_DELIVERY_TIME;
+    //Количество вершин
+    private int NUMBER_OF_NODES;
+    //Количество ребер
+    private int NUMBER_OF_EDGES;
+    private double TIME_FOR_STOP = 5;
+    private Model model;
+    private View view;
+    private Pizzeria pizzeria;
 
     /**
      * Создает новый экземпляр контроллера
      * @param param
      */
-	public Controller(String... param) {
-	    //Если кстановлен параметр, устанавливается уровень лога DEBUG
-	    if(param.length > 0 && param[0].equals("-d")){
-	        logger.setLevel(Level.DEBUG);
+    public Controller(String... param) {
+        //Если кстановлен параметр, устанавливается уровень лога DEBUG
+        if(param.length > 0 && param[0].equals("-d")){
+            logger.setLevel(Level.DEBUG);
         }
         else logger.setLevel(Level.WARN);
         logger.info("loading properties");
-	    loadProperties();
+        loadProperties();
         logger.info("creating model");
-		this.model = new Model();
+        this.model = new Model();
         logger.info("downloading data from file");
         downloadFromFile(new File(dataFile));
         //generateGraph(NUMBER_OF_NODES,NUMBER_OF_EDGES);
@@ -64,7 +64,7 @@ public class Controller implements Runnable{
         view = new View(model, param);
         view.setController(this);
         logger.info("creating pizzeria");
-		model.setPizzeria(new Pizzeria(model.getPoints().get(0)));
+        model.setPizzeria(new Pizzeria(model.getPoints().get(0)));
         pizzeria = model.getPizzeria();
         //Генерация доставщиков
         logger.info("creating delivers");
@@ -77,14 +77,15 @@ public class Controller implements Runnable{
         for (int i = 0; i < NUMBER_OF_MEN; i++) {
             pizzeria.addDelivering(new Man("Человек №" + (i+1)));
         }
-	}
+        view.main(param);
+    }
 
     /**
      * Загружает настройки из файла
      */
-	public void loadProperties(){
-	    Properties prop = new Properties();
-	    try {
+    public void loadProperties(){
+        Properties prop = new Properties();
+        try {
             InputStream inputStream = new FileInputStream("config.properties");
             prop.load(inputStream);
             dataFile = prop.getProperty("datafile");
@@ -98,7 +99,7 @@ public class Controller implements Runnable{
             inputStream.close();
             logger.info("loading complete");
         }catch (IOException e){
-	        logger.error("config loading failed", e);
+            logger.error("config loading failed", e);
         }
     }
 
@@ -107,7 +108,7 @@ public class Controller implements Runnable{
     }
 
     public void addOrder(int point){
-	    model.addOrder(point);
+        model.addOrder(point);
     }
 
     /**
@@ -180,31 +181,31 @@ public class Controller implements Runnable{
         model.setPoints(points);
     }
 
-	/**
-	 * Ищет кратчайший путь между двумя точками
-	 * @param start - начало маршрута
-	 * @param end - конец маршрута
-	 */
-	public GraphPath<Point, Road>  findWay(Point start, Point end, Transport transport) {
+    /**
+     * Ищет кратчайший путь между двумя точками
+     * @param start - начало маршрута
+     * @param end - конец маршрута
+     */
+    public GraphPath<Point, Road>  findWay(Point start, Point end, Transport transport) {
         //В зависимости от типа транспорта выбирается граф и по методу Дийкстры находится оптимальный путь
         DijkstraShortestPath<Point, Road> path;
         switch (transport){
             case MAN: path = new DijkstraShortestPath<Point, Road>(model.getMan());
-            break;
+                break;
             case BICYCLE: path = new DijkstraShortestPath<Point, Road>(model.getBicycle());
                 break;
             case CAR: path = new DijkstraShortestPath<Point, Road>(model.getCar());
                 break;
-                default: return null;
+            default: return null;
         }
         return path.getPath(start,end);
-	}
-	/**
-	 * Загружет данные из файла
-	 * @param file - файл
-	 */
-	public void downloadFromFile(File file) {
-		//добавление точек
+    }
+    /**
+     * Загружет данные из файла
+     * @param file - файл
+     */
+    public void downloadFromFile(File file) {
+        //добавление точек
         logger.info("creating graphs");
         SimpleWeightedGraph<Point, DefaultWeightedEdge> man = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
         SimpleWeightedGraph<Point, DefaultWeightedEdge> bicycle = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
@@ -259,17 +260,16 @@ public class Controller implements Runnable{
             logger.error("loading from file failed", e);
         }
         //создание карты
-		model.setMan(man);
-		model.setBicycle(bicycle);
-		model.setCar(car);
-		model.setPoints(points);
+        model.setMan(man);
+        model.setBicycle(bicycle);
+        model.setCar(car);
+        model.setPoints(points);
 
-	}
+    }
 
     /**
      * Симуляция работы пиццерии
      */
-    @Override
     public void run(){
         int alarm = 0;
 
@@ -277,7 +277,8 @@ public class Controller implements Runnable{
         logger.info("simulating delivering");
         Point start = pizzeria.getLocation();
         List<Order> activeOrders = new LinkedList<>();
-        while (true){
+        boolean isDone = false;
+        while (!isDone){
             long currentTime = System.currentTimeMillis();
             for(Order order : orders){
                 if(!order.isClose() && order.getTime()<=currentTime && !activeOrders.contains(order)){
@@ -310,10 +311,14 @@ public class Controller implements Runnable{
                         optimalDeliver.setFree(false);
                         firstOrder.setClose(true);
                         secondOrder.setClose(true);
+
+                        model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName(),false);
+                        model.addData(secondOrder.getId(), start.toString(), secondOrder.getLocation().toString(), getTime(secondOrder.getTime()), optimalDeliver.getName(),false);
                     }
                 }
                 else if(!firstWay.isEmpty()) {
                     iterator.remove();
+                    model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName(),false);
                     view.show(firstWay.getEdgeList(), firstOrder, optimalDeliver, currentTime+firstWay.getWeight());
                     optimalDeliver.setTime(currentTime + firstWay.getWeight()*2 + TIME_FOR_STOP);
                     optimalDeliver.setFree(false);
@@ -328,6 +333,12 @@ public class Controller implements Runnable{
                     }
                 }
             }
+            for (Model.Data data:  model.getData()) {
+                if(orders.get(data.getNumber()-1).isClose())
+                data.setDone(true);
+
+            }
+            if(activeOrders.size()==0)isDone=true;
             if(alarm>pizzeria.getOrders().size()/2){
                 logger.warn("Too many alarms. Increase amount of delivers");
             }
@@ -358,5 +369,8 @@ public class Controller implements Runnable{
         return new Pair<>(optimalWay,optimalDeliver);
     }
 
-
+    public String getTime(double time){
+        long t=Math.round(time/1000);
+        return t/60%60 + ":" + t%60;
+    }
 }
