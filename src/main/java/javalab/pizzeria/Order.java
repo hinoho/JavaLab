@@ -14,6 +14,15 @@ public class Order {
     //Время, когда будет сделан заказ
     private double time;
     private double doneTime;
+    private boolean checked;
+
+    public boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 
     public double getDoneTime() {
         return doneTime;
@@ -23,12 +32,9 @@ public class Order {
         this.doneTime = doneTime;
     }
 
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
+    @Override
+    public String toString() {
+        return "Заказ №" + id;
     }
 
     public boolean isClose() {

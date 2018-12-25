@@ -1702,3 +1702,852 @@ Seventh street между Точка №3 и Точка №6
 2018-12-24 21:47:12 INFO  Controller:63 - creating view
 2018-12-24 21:47:12 INFO  Controller:66 - creating pizzeria
 2018-12-24 21:47:12 INFO  Controller:70 - creating delivers
+2018-12-25 19:31:16 INFO  Controller:56 - loading properties
+2018-12-25 19:31:16 INFO  Controller:100 - loading complete
+2018-12-25 19:31:16 INFO  Controller:58 - creating model
+2018-12-25 19:31:16 INFO  Controller:60 - downloading data from file
+2018-12-25 19:31:16 INFO  Controller:205 - creating graphs
+2018-12-25 19:31:16 INFO  Controller:254 - downloading completed
+2018-12-25 19:31:16 INFO  Controller:63 - creating view
+2018-12-25 19:31:17 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:31:17 INFO  Controller:70 - creating delivers
+2018-12-25 19:32:21 INFO  Controller:56 - loading properties
+2018-12-25 19:32:21 INFO  Controller:100 - loading complete
+2018-12-25 19:32:21 INFO  Controller:58 - creating model
+2018-12-25 19:32:21 INFO  Controller:60 - downloading data from file
+2018-12-25 19:32:21 INFO  Controller:205 - creating graphs
+2018-12-25 19:32:21 INFO  Controller:254 - downloading completed
+2018-12-25 19:32:21 INFO  Controller:63 - creating view
+2018-12-25 19:32:21 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:32:21 INFO  Controller:70 - creating delivers
+2018-12-25 19:32:36 INFO  Controller:56 - loading properties
+2018-12-25 19:32:36 INFO  Controller:100 - loading complete
+2018-12-25 19:32:36 INFO  Controller:58 - creating model
+2018-12-25 19:32:36 INFO  Controller:60 - downloading data from file
+2018-12-25 19:32:36 INFO  Controller:205 - creating graphs
+2018-12-25 19:32:37 INFO  Controller:254 - downloading completed
+2018-12-25 19:32:37 INFO  Controller:63 - creating view
+2018-12-25 19:32:37 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:32:37 INFO  Controller:70 - creating delivers
+2018-12-25 19:33:18 INFO  Controller:56 - loading properties
+2018-12-25 19:33:18 INFO  Controller:100 - loading complete
+2018-12-25 19:33:18 INFO  Controller:58 - creating model
+2018-12-25 19:33:18 INFO  Controller:60 - downloading data from file
+2018-12-25 19:33:18 INFO  Controller:205 - creating graphs
+2018-12-25 19:33:18 INFO  Controller:254 - downloading completed
+2018-12-25 19:33:18 INFO  Controller:63 - creating view
+2018-12-25 19:33:18 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:33:18 INFO  Controller:70 - creating delivers
+2018-12-25 19:33:26 INFO  Controller:56 - loading properties
+2018-12-25 19:33:26 INFO  Controller:100 - loading complete
+2018-12-25 19:33:26 INFO  Controller:58 - creating model
+2018-12-25 19:33:26 INFO  Controller:60 - downloading data from file
+2018-12-25 19:33:26 INFO  Controller:205 - creating graphs
+2018-12-25 19:33:26 INFO  Controller:254 - downloading completed
+2018-12-25 19:33:26 INFO  Controller:63 - creating view
+2018-12-25 19:33:26 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:33:26 INFO  Controller:70 - creating delivers
+2018-12-25 19:33:46 INFO  Controller:56 - loading properties
+2018-12-25 19:33:46 INFO  Controller:100 - loading complete
+2018-12-25 19:33:46 INFO  Controller:58 - creating model
+2018-12-25 19:33:46 INFO  Controller:60 - downloading data from file
+2018-12-25 19:33:46 INFO  Controller:205 - creating graphs
+2018-12-25 19:33:46 INFO  Controller:254 - downloading completed
+2018-12-25 19:33:46 INFO  Controller:63 - creating view
+2018-12-25 19:33:46 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:33:46 INFO  Controller:70 - creating delivers
+2018-12-25 19:34:01 INFO  Controller:56 - loading properties
+2018-12-25 19:34:01 INFO  Controller:100 - loading complete
+2018-12-25 19:34:01 INFO  Controller:58 - creating model
+2018-12-25 19:34:01 INFO  Controller:60 - downloading data from file
+2018-12-25 19:34:01 INFO  Controller:205 - creating graphs
+2018-12-25 19:34:01 INFO  Controller:254 - downloading completed
+2018-12-25 19:34:01 INFO  Controller:63 - creating view
+2018-12-25 19:34:01 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:34:01 INFO  Controller:70 - creating delivers
+2018-12-25 19:34:34 INFO  Controller:56 - loading properties
+2018-12-25 19:34:34 INFO  Controller:100 - loading complete
+2018-12-25 19:34:34 INFO  Controller:58 - creating model
+2018-12-25 19:34:34 INFO  Controller:60 - downloading data from file
+2018-12-25 19:34:34 INFO  Controller:205 - creating graphs
+2018-12-25 19:34:34 INFO  Controller:254 - downloading completed
+2018-12-25 19:34:34 INFO  Controller:63 - creating view
+2018-12-25 19:34:34 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:34:34 INFO  Controller:70 - creating delivers
+2018-12-25 19:34:42 INFO  Controller:56 - loading properties
+2018-12-25 19:34:42 INFO  Controller:100 - loading complete
+2018-12-25 19:34:42 INFO  Controller:58 - creating model
+2018-12-25 19:34:42 INFO  Controller:60 - downloading data from file
+2018-12-25 19:34:42 INFO  Controller:205 - creating graphs
+2018-12-25 19:34:42 INFO  Controller:254 - downloading completed
+2018-12-25 19:34:42 INFO  Controller:63 - creating view
+2018-12-25 19:34:42 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:34:42 INFO  Controller:70 - creating delivers
+2018-12-25 19:35:25 INFO  Controller:56 - loading properties
+2018-12-25 19:35:25 INFO  Controller:100 - loading complete
+2018-12-25 19:35:25 INFO  Controller:58 - creating model
+2018-12-25 19:35:25 INFO  Controller:60 - downloading data from file
+2018-12-25 19:35:25 INFO  Controller:205 - creating graphs
+2018-12-25 19:35:25 INFO  Controller:254 - downloading completed
+2018-12-25 19:35:25 INFO  Controller:63 - creating view
+2018-12-25 19:35:25 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:35:25 INFO  Controller:70 - creating delivers
+2018-12-25 19:35:52 INFO  Controller:56 - loading properties
+2018-12-25 19:35:52 INFO  Controller:100 - loading complete
+2018-12-25 19:35:52 INFO  Controller:58 - creating model
+2018-12-25 19:35:52 INFO  Controller:60 - downloading data from file
+2018-12-25 19:35:52 INFO  Controller:205 - creating graphs
+2018-12-25 19:35:52 INFO  Controller:254 - downloading completed
+2018-12-25 19:35:52 INFO  Controller:63 - creating view
+2018-12-25 19:35:52 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:35:52 INFO  Controller:70 - creating delivers
+2018-12-25 19:35:59 INFO  View:204 - added order
+2018-12-25 19:35:59 INFO  Controller:273 - simulating delivering
+2018-12-25 19:35:59 INFO  View:88 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 36:16
+Должен быть доставлен не позднее 36:30
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 19:37:30 INFO  Controller:56 - loading properties
+2018-12-25 19:37:30 INFO  Controller:100 - loading complete
+2018-12-25 19:37:30 INFO  Controller:58 - creating model
+2018-12-25 19:37:30 INFO  Controller:60 - downloading data from file
+2018-12-25 19:37:30 INFO  Controller:205 - creating graphs
+2018-12-25 19:37:30 INFO  Controller:254 - downloading completed
+2018-12-25 19:37:30 INFO  Controller:63 - creating view
+2018-12-25 19:37:30 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:37:30 INFO  Controller:70 - creating delivers
+2018-12-25 19:38:59 INFO  Controller:56 - loading properties
+2018-12-25 19:38:59 INFO  Controller:100 - loading complete
+2018-12-25 19:38:59 INFO  Controller:58 - creating model
+2018-12-25 19:38:59 INFO  Controller:60 - downloading data from file
+2018-12-25 19:38:59 INFO  Controller:205 - creating graphs
+2018-12-25 19:39:00 INFO  Controller:254 - downloading completed
+2018-12-25 19:39:00 INFO  Controller:63 - creating view
+2018-12-25 19:39:00 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:39:00 INFO  Controller:70 - creating delivers
+2018-12-25 19:39:13 INFO  Controller:56 - loading properties
+2018-12-25 19:39:13 INFO  Controller:100 - loading complete
+2018-12-25 19:39:13 INFO  Controller:58 - creating model
+2018-12-25 19:39:13 INFO  Controller:60 - downloading data from file
+2018-12-25 19:39:13 INFO  Controller:205 - creating graphs
+2018-12-25 19:39:13 INFO  Controller:254 - downloading completed
+2018-12-25 19:39:13 INFO  Controller:63 - creating view
+2018-12-25 19:39:13 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:39:13 INFO  Controller:70 - creating delivers
+2018-12-25 19:39:21 INFO  Controller:56 - loading properties
+2018-12-25 19:39:21 INFO  Controller:100 - loading complete
+2018-12-25 19:39:21 INFO  Controller:58 - creating model
+2018-12-25 19:39:21 INFO  Controller:60 - downloading data from file
+2018-12-25 19:39:21 INFO  Controller:205 - creating graphs
+2018-12-25 19:39:22 INFO  Controller:254 - downloading completed
+2018-12-25 19:39:22 INFO  Controller:63 - creating view
+2018-12-25 19:39:22 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:39:22 INFO  Controller:70 - creating delivers
+2018-12-25 19:39:31 INFO  Controller:56 - loading properties
+2018-12-25 19:39:31 INFO  Controller:100 - loading complete
+2018-12-25 19:39:31 INFO  Controller:58 - creating model
+2018-12-25 19:39:31 INFO  Controller:60 - downloading data from file
+2018-12-25 19:39:31 INFO  Controller:205 - creating graphs
+2018-12-25 19:39:31 INFO  Controller:254 - downloading completed
+2018-12-25 19:39:31 INFO  Controller:63 - creating view
+2018-12-25 19:39:31 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:39:31 INFO  Controller:70 - creating delivers
+2018-12-25 19:39:44 INFO  Controller:56 - loading properties
+2018-12-25 19:39:44 INFO  Controller:100 - loading complete
+2018-12-25 19:39:44 INFO  Controller:58 - creating model
+2018-12-25 19:39:44 INFO  Controller:60 - downloading data from file
+2018-12-25 19:39:44 INFO  Controller:205 - creating graphs
+2018-12-25 19:39:44 INFO  Controller:254 - downloading completed
+2018-12-25 19:39:44 INFO  Controller:63 - creating view
+2018-12-25 19:39:44 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:39:44 INFO  Controller:70 - creating delivers
+2018-12-25 19:40:05 INFO  Controller:56 - loading properties
+2018-12-25 19:40:05 INFO  Controller:100 - loading complete
+2018-12-25 19:40:05 INFO  Controller:58 - creating model
+2018-12-25 19:40:05 INFO  Controller:60 - downloading data from file
+2018-12-25 19:40:05 INFO  Controller:205 - creating graphs
+2018-12-25 19:40:05 INFO  Controller:254 - downloading completed
+2018-12-25 19:40:05 INFO  Controller:63 - creating view
+2018-12-25 19:40:05 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:40:05 INFO  Controller:70 - creating delivers
+2018-12-25 19:40:14 INFO  Controller:56 - loading properties
+2018-12-25 19:40:14 INFO  Controller:100 - loading complete
+2018-12-25 19:40:14 INFO  Controller:58 - creating model
+2018-12-25 19:40:14 INFO  Controller:60 - downloading data from file
+2018-12-25 19:40:14 INFO  Controller:205 - creating graphs
+2018-12-25 19:40:14 INFO  Controller:254 - downloading completed
+2018-12-25 19:40:14 INFO  Controller:63 - creating view
+2018-12-25 19:40:14 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:40:14 INFO  Controller:70 - creating delivers
+2018-12-25 19:40:22 INFO  Controller:56 - loading properties
+2018-12-25 19:40:22 INFO  Controller:100 - loading complete
+2018-12-25 19:40:22 INFO  Controller:58 - creating model
+2018-12-25 19:40:22 INFO  Controller:60 - downloading data from file
+2018-12-25 19:40:22 INFO  Controller:205 - creating graphs
+2018-12-25 19:40:22 INFO  Controller:254 - downloading completed
+2018-12-25 19:40:22 INFO  Controller:63 - creating view
+2018-12-25 19:40:22 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:40:22 INFO  Controller:70 - creating delivers
+2018-12-25 19:40:31 INFO  Controller:56 - loading properties
+2018-12-25 19:40:31 INFO  Controller:100 - loading complete
+2018-12-25 19:40:31 INFO  Controller:58 - creating model
+2018-12-25 19:40:31 INFO  Controller:60 - downloading data from file
+2018-12-25 19:40:31 INFO  Controller:205 - creating graphs
+2018-12-25 19:40:31 INFO  Controller:254 - downloading completed
+2018-12-25 19:40:31 INFO  Controller:63 - creating view
+2018-12-25 19:40:31 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:40:31 INFO  Controller:70 - creating delivers
+2018-12-25 19:40:38 INFO  Controller:56 - loading properties
+2018-12-25 19:40:38 INFO  Controller:100 - loading complete
+2018-12-25 19:40:38 INFO  Controller:58 - creating model
+2018-12-25 19:40:38 INFO  Controller:60 - downloading data from file
+2018-12-25 19:40:38 INFO  Controller:205 - creating graphs
+2018-12-25 19:40:39 INFO  Controller:254 - downloading completed
+2018-12-25 19:40:39 INFO  Controller:63 - creating view
+2018-12-25 19:40:39 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:40:39 INFO  Controller:70 - creating delivers
+2018-12-25 19:41:00 INFO  Controller:56 - loading properties
+2018-12-25 19:41:00 INFO  Controller:100 - loading complete
+2018-12-25 19:41:00 INFO  Controller:58 - creating model
+2018-12-25 19:41:00 INFO  Controller:60 - downloading data from file
+2018-12-25 19:41:00 INFO  Controller:205 - creating graphs
+2018-12-25 19:41:00 INFO  Controller:254 - downloading completed
+2018-12-25 19:41:00 INFO  Controller:63 - creating view
+2018-12-25 19:41:00 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:41:00 INFO  Controller:70 - creating delivers
+2018-12-25 19:41:09 INFO  Controller:56 - loading properties
+2018-12-25 19:41:09 INFO  Controller:100 - loading complete
+2018-12-25 19:41:09 INFO  Controller:58 - creating model
+2018-12-25 19:41:09 INFO  Controller:60 - downloading data from file
+2018-12-25 19:41:09 INFO  Controller:205 - creating graphs
+2018-12-25 19:41:09 INFO  Controller:254 - downloading completed
+2018-12-25 19:41:09 INFO  Controller:63 - creating view
+2018-12-25 19:41:09 INFO  Controller:66 - creating pizzeria
+2018-12-25 19:41:09 INFO  Controller:70 - creating delivers
+2018-12-25 19:58:45 INFO  Controller:58 - loading properties
+2018-12-25 19:58:45 INFO  Controller:102 - loading complete
+2018-12-25 19:58:45 INFO  Controller:60 - creating model
+2018-12-25 19:58:45 INFO  Controller:62 - downloading data from file
+2018-12-25 19:58:45 INFO  Controller:207 - creating graphs
+2018-12-25 19:58:45 INFO  Controller:256 - downloading completed
+2018-12-25 19:58:45 INFO  Controller:65 - creating view
+2018-12-25 19:58:45 INFO  Controller:68 - creating pizzeria
+2018-12-25 19:58:45 INFO  Controller:72 - creating delivers
+2018-12-25 19:59:19 INFO  Controller:58 - loading properties
+2018-12-25 19:59:19 INFO  Controller:102 - loading complete
+2018-12-25 19:59:19 INFO  Controller:60 - creating model
+2018-12-25 19:59:19 INFO  Controller:62 - downloading data from file
+2018-12-25 19:59:19 INFO  Controller:207 - creating graphs
+2018-12-25 19:59:19 INFO  Controller:256 - downloading completed
+2018-12-25 19:59:19 INFO  Controller:65 - creating view
+2018-12-25 19:59:19 INFO  Controller:68 - creating pizzeria
+2018-12-25 19:59:19 INFO  Controller:72 - creating delivers
+2018-12-25 20:00:29 INFO  Controller:58 - loading properties
+2018-12-25 20:00:29 INFO  Controller:102 - loading complete
+2018-12-25 20:00:29 INFO  Controller:60 - creating model
+2018-12-25 20:00:29 INFO  Controller:62 - downloading data from file
+2018-12-25 20:00:29 INFO  Controller:207 - creating graphs
+2018-12-25 20:00:29 INFO  Controller:256 - downloading completed
+2018-12-25 20:00:29 INFO  Controller:65 - creating view
+2018-12-25 20:00:29 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:00:29 INFO  Controller:72 - creating delivers
+2018-12-25 20:00:52 INFO  Controller:58 - loading properties
+2018-12-25 20:00:52 INFO  Controller:102 - loading complete
+2018-12-25 20:00:52 INFO  Controller:60 - creating model
+2018-12-25 20:00:52 INFO  Controller:62 - downloading data from file
+2018-12-25 20:00:52 INFO  Controller:207 - creating graphs
+2018-12-25 20:00:52 INFO  Controller:256 - downloading completed
+2018-12-25 20:00:52 INFO  Controller:65 - creating view
+2018-12-25 20:00:52 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:00:52 INFO  Controller:72 - creating delivers
+2018-12-25 20:00:58 INFO  Controller:58 - loading properties
+2018-12-25 20:00:58 INFO  Controller:102 - loading complete
+2018-12-25 20:00:58 INFO  Controller:60 - creating model
+2018-12-25 20:00:58 INFO  Controller:62 - downloading data from file
+2018-12-25 20:00:58 INFO  Controller:207 - creating graphs
+2018-12-25 20:00:58 INFO  Controller:256 - downloading completed
+2018-12-25 20:00:58 INFO  Controller:65 - creating view
+2018-12-25 20:00:58 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:00:58 INFO  Controller:72 - creating delivers
+2018-12-25 20:02:01 INFO  Controller:58 - loading properties
+2018-12-25 20:02:01 INFO  Controller:102 - loading complete
+2018-12-25 20:02:01 INFO  Controller:60 - creating model
+2018-12-25 20:02:01 INFO  Controller:62 - downloading data from file
+2018-12-25 20:02:01 INFO  Controller:207 - creating graphs
+2018-12-25 20:02:01 INFO  Controller:256 - downloading completed
+2018-12-25 20:02:01 INFO  Controller:65 - creating view
+2018-12-25 20:02:01 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:02:01 INFO  Controller:72 - creating delivers
+2018-12-25 20:02:30 INFO  Controller:58 - loading properties
+2018-12-25 20:02:30 INFO  Controller:102 - loading complete
+2018-12-25 20:02:30 INFO  Controller:60 - creating model
+2018-12-25 20:02:30 INFO  Controller:62 - downloading data from file
+2018-12-25 20:02:30 INFO  Controller:207 - creating graphs
+2018-12-25 20:02:30 INFO  Controller:256 - downloading completed
+2018-12-25 20:02:30 INFO  Controller:65 - creating view
+2018-12-25 20:02:30 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:02:30 INFO  Controller:72 - creating delivers
+2018-12-25 20:02:47 INFO  Controller:58 - loading properties
+2018-12-25 20:02:47 INFO  Controller:102 - loading complete
+2018-12-25 20:02:47 INFO  Controller:60 - creating model
+2018-12-25 20:02:47 INFO  Controller:62 - downloading data from file
+2018-12-25 20:02:47 INFO  Controller:207 - creating graphs
+2018-12-25 20:02:47 INFO  Controller:256 - downloading completed
+2018-12-25 20:02:47 INFO  Controller:65 - creating view
+2018-12-25 20:02:47 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:02:47 INFO  Controller:72 - creating delivers
+2018-12-25 20:03:44 INFO  Controller:58 - loading properties
+2018-12-25 20:03:44 INFO  Controller:102 - loading complete
+2018-12-25 20:03:44 INFO  Controller:60 - creating model
+2018-12-25 20:03:44 INFO  Controller:62 - downloading data from file
+2018-12-25 20:03:44 INFO  Controller:207 - creating graphs
+2018-12-25 20:03:44 INFO  Controller:256 - downloading completed
+2018-12-25 20:03:44 INFO  Controller:65 - creating view
+2018-12-25 20:03:44 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:03:44 INFO  Controller:72 - creating delivers
+2018-12-25 20:17:34 INFO  Controller:58 - loading properties
+2018-12-25 20:17:34 INFO  Controller:102 - loading complete
+2018-12-25 20:17:34 INFO  Controller:60 - creating model
+2018-12-25 20:17:34 INFO  Controller:62 - downloading data from file
+2018-12-25 20:17:34 INFO  Controller:207 - creating graphs
+2018-12-25 20:17:34 INFO  Controller:256 - downloading completed
+2018-12-25 20:17:34 INFO  Controller:65 - creating view
+2018-12-25 20:17:34 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:17:34 INFO  Controller:72 - creating delivers
+2018-12-25 20:17:37 INFO  View:215 - added order
+2018-12-25 20:17:37 INFO  Controller:275 - simulating delivering
+2018-12-25 20:17:37 INFO  View:94 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 17:54
+Должен быть доставлен не позднее 18:7
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:17:41 INFO  View:215 - added order
+2018-12-25 20:17:41 INFO  Controller:275 - simulating delivering
+2018-12-25 20:17:41 INFO  View:94 - Заказ №2
+Доставка в точку 2
+Будет доставлен в 18:15
+Должен быть доставлен не позднее 18:12
+Доставляет Машина №2
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:17:55 INFO  View:215 - added order
+2018-12-25 20:17:55 INFO  Controller:275 - simulating delivering
+2018-12-25 20:17:55 INFO  View:94 - Заказ №3
+Доставка в точку 2
+Будет доставлен в 18:29
+Должен быть доставлен не позднее 18:25
+Доставляет Машина №3
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:19:28 INFO  Controller:58 - loading properties
+2018-12-25 20:19:28 INFO  Controller:102 - loading complete
+2018-12-25 20:19:28 INFO  Controller:60 - creating model
+2018-12-25 20:19:28 INFO  Controller:62 - downloading data from file
+2018-12-25 20:19:28 INFO  Controller:207 - creating graphs
+2018-12-25 20:19:28 INFO  Controller:256 - downloading completed
+2018-12-25 20:19:28 INFO  Controller:65 - creating view
+2018-12-25 20:19:28 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:19:28 INFO  Controller:72 - creating delivers
+2018-12-25 20:19:34 INFO  View:215 - added order
+2018-12-25 20:19:34 INFO  Controller:275 - simulating delivering
+2018-12-25 20:19:34 INFO  View:94 - Заказ №1
+Доставка в точку 2
+Будет доставлен в 20:7
+Должен быть доставлен не позднее 20:4
+Доставляет Машина №1
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:19:56 INFO  Controller:58 - loading properties
+2018-12-25 20:19:56 INFO  Controller:102 - loading complete
+2018-12-25 20:19:56 INFO  Controller:60 - creating model
+2018-12-25 20:19:56 INFO  Controller:62 - downloading data from file
+2018-12-25 20:19:56 INFO  Controller:207 - creating graphs
+2018-12-25 20:19:56 INFO  Controller:256 - downloading completed
+2018-12-25 20:19:56 INFO  Controller:65 - creating view
+2018-12-25 20:19:56 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:19:56 INFO  Controller:72 - creating delivers
+2018-12-25 20:20:20 INFO  Controller:58 - loading properties
+2018-12-25 20:20:20 INFO  Controller:102 - loading complete
+2018-12-25 20:20:20 INFO  Controller:60 - creating model
+2018-12-25 20:20:20 INFO  Controller:62 - downloading data from file
+2018-12-25 20:20:20 INFO  Controller:207 - creating graphs
+2018-12-25 20:20:20 INFO  Controller:256 - downloading completed
+2018-12-25 20:20:20 INFO  Controller:65 - creating view
+2018-12-25 20:20:20 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:20:20 INFO  Controller:72 - creating delivers
+2018-12-25 20:20:22 INFO  View:216 - added order
+2018-12-25 20:20:22 INFO  Controller:275 - simulating delivering
+2018-12-25 20:20:22 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 20:39
+Должен быть доставлен не позднее 20:53
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:20:33 INFO  View:216 - added order
+2018-12-25 20:20:33 INFO  Controller:275 - simulating delivering
+2018-12-25 20:20:33 INFO  View:95 - Заказ №2
+Доставка в точку 2
+Будет доставлен в 21:7
+Должен быть доставлен не позднее 21:3
+Доставляет Машина №2
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:20:38 INFO  View:216 - added order
+2018-12-25 20:20:38 INFO  Controller:275 - simulating delivering
+2018-12-25 20:20:38 INFO  View:95 - Заказ №3
+Доставка в точку 2
+Будет доставлен в 21:12
+Должен быть доставлен не позднее 21:8
+Доставляет Машина №3
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:20:50 INFO  View:216 - added order
+2018-12-25 20:20:50 INFO  Controller:275 - simulating delivering
+2018-12-25 20:20:50 INFO  View:95 - Заказ №4
+Доставка в точку 2
+Будет доставлен в 21:24
+Должен быть доставлен не позднее 21:21
+Доставляет Машина №4
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:21:05 INFO  View:216 - added order
+2018-12-25 20:21:05 INFO  Controller:275 - simulating delivering
+2018-12-25 20:21:05 INFO  View:95 - Заказ №5
+Доставка в точку 2
+Будет доставлен в 21:38
+Должен быть доставлен не позднее 21:35
+Доставляет Машина №5
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:21:14 INFO  View:216 - added order
+2018-12-25 20:21:14 INFO  Controller:275 - simulating delivering
+2018-12-25 20:21:14 INFO  View:95 - Заказ №6
+Доставка в точку 3
+Будет доставлен в 22:4
+Должен быть доставлен не позднее 21:44
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+Third street между Точка №2 и Точка №4
+
+2018-12-25 20:33:49 INFO  Controller:58 - loading properties
+2018-12-25 20:33:49 INFO  Controller:102 - loading complete
+2018-12-25 20:33:49 INFO  Controller:60 - creating model
+2018-12-25 20:33:49 INFO  Controller:62 - downloading data from file
+2018-12-25 20:33:49 INFO  Controller:207 - creating graphs
+2018-12-25 20:33:49 INFO  Controller:256 - downloading completed
+2018-12-25 20:33:49 INFO  Controller:65 - creating view
+2018-12-25 20:33:49 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:33:49 INFO  Controller:72 - creating delivers
+2018-12-25 20:33:53 INFO  View:216 - added order
+2018-12-25 20:33:53 INFO  Controller:275 - simulating delivering
+2018-12-25 20:33:53 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 34:10
+Должен быть доставлен не позднее 34:24
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:34:02 INFO  View:216 - added order
+2018-12-25 20:34:02 INFO  Controller:275 - simulating delivering
+2018-12-25 20:34:02 INFO  View:95 - Заказ №2
+Доставка в точку 2
+Будет доставлен в 34:36
+Должен быть доставлен не позднее 34:32
+Доставляет Машина №2
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:34:04 INFO  View:216 - added order
+2018-12-25 20:34:04 INFO  Controller:275 - simulating delivering
+2018-12-25 20:34:04 INFO  View:95 - Заказ №3
+Доставка в точку 2
+Будет доставлен в 34:38
+Должен быть доставлен не позднее 34:35
+Доставляет Машина №3
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 20:34:48 INFO  Controller:58 - loading properties
+2018-12-25 20:34:48 INFO  Controller:102 - loading complete
+2018-12-25 20:34:48 INFO  Controller:60 - creating model
+2018-12-25 20:34:48 INFO  Controller:62 - downloading data from file
+2018-12-25 20:34:48 INFO  Controller:207 - creating graphs
+2018-12-25 20:34:48 INFO  Controller:256 - downloading completed
+2018-12-25 20:34:48 INFO  Controller:65 - creating view
+2018-12-25 20:34:48 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:34:48 INFO  Controller:72 - creating delivers
+2018-12-25 20:34:51 INFO  View:216 - added order
+2018-12-25 20:34:51 INFO  Controller:275 - simulating delivering
+2018-12-25 20:34:51 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 35:8
+Должен быть доставлен не позднее 35:22
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:44:14 INFO  Controller:58 - loading properties
+2018-12-25 20:44:14 INFO  Controller:102 - loading complete
+2018-12-25 20:44:14 INFO  Controller:60 - creating model
+2018-12-25 20:44:14 INFO  Controller:62 - downloading data from file
+2018-12-25 20:44:14 INFO  Controller:207 - creating graphs
+2018-12-25 20:44:14 INFO  Controller:256 - downloading completed
+2018-12-25 20:44:14 INFO  Controller:65 - creating view
+2018-12-25 20:44:14 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:44:14 INFO  Controller:72 - creating delivers
+2018-12-25 20:44:16 INFO  View:216 - added order
+2018-12-25 20:44:16 INFO  Controller:275 - simulating delivering
+2018-12-25 20:44:16 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 44:33
+Должен быть доставлен не позднее 44:47
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:44:35 INFO  View:262 - order checked
+2018-12-25 20:46:33 INFO  Controller:58 - loading properties
+2018-12-25 20:46:33 INFO  Controller:102 - loading complete
+2018-12-25 20:46:33 INFO  Controller:60 - creating model
+2018-12-25 20:46:33 INFO  Controller:62 - downloading data from file
+2018-12-25 20:46:33 INFO  Controller:207 - creating graphs
+2018-12-25 20:46:33 INFO  Controller:256 - downloading completed
+2018-12-25 20:46:33 INFO  Controller:65 - creating view
+2018-12-25 20:46:33 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:46:33 INFO  Controller:72 - creating delivers
+2018-12-25 20:46:50 INFO  Controller:58 - loading properties
+2018-12-25 20:46:50 INFO  Controller:102 - loading complete
+2018-12-25 20:46:50 INFO  Controller:60 - creating model
+2018-12-25 20:46:50 INFO  Controller:62 - downloading data from file
+2018-12-25 20:46:50 INFO  Controller:207 - creating graphs
+2018-12-25 20:46:50 INFO  Controller:256 - downloading completed
+2018-12-25 20:46:50 INFO  Controller:65 - creating view
+2018-12-25 20:46:50 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:46:50 INFO  Controller:72 - creating delivers
+2018-12-25 20:47:17 INFO  Controller:58 - loading properties
+2018-12-25 20:47:17 INFO  Controller:102 - loading complete
+2018-12-25 20:47:17 INFO  Controller:60 - creating model
+2018-12-25 20:47:17 INFO  Controller:62 - downloading data from file
+2018-12-25 20:47:17 INFO  Controller:207 - creating graphs
+2018-12-25 20:47:17 INFO  Controller:256 - downloading completed
+2018-12-25 20:47:17 INFO  Controller:65 - creating view
+2018-12-25 20:47:17 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:47:17 INFO  Controller:72 - creating delivers
+2018-12-25 20:47:22 INFO  View:216 - added order
+2018-12-25 20:47:22 INFO  Controller:275 - simulating delivering
+2018-12-25 20:47:22 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 47:39
+Должен быть доставлен не позднее 47:53
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:47:42 INFO  View:262 - order checked
+2018-12-25 20:47:46 INFO  View:216 - added order
+2018-12-25 20:47:46 INFO  Controller:275 - simulating delivering
+2018-12-25 20:47:46 INFO  View:95 - Заказ №2
+Доставка в точку 1
+Будет доставлен в 48:3
+Должен быть доставлен не позднее 48:16
+Доставляет Машина №2
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:48:24 INFO  Controller:58 - loading properties
+2018-12-25 20:48:24 INFO  Controller:102 - loading complete
+2018-12-25 20:48:24 INFO  Controller:60 - creating model
+2018-12-25 20:48:24 INFO  Controller:62 - downloading data from file
+2018-12-25 20:48:24 INFO  Controller:207 - creating graphs
+2018-12-25 20:48:24 INFO  Controller:256 - downloading completed
+2018-12-25 20:48:24 INFO  Controller:65 - creating view
+2018-12-25 20:48:24 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:48:24 INFO  Controller:72 - creating delivers
+2018-12-25 20:48:28 INFO  View:216 - added order
+2018-12-25 20:48:28 INFO  Controller:275 - simulating delivering
+2018-12-25 20:48:28 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 48:45
+Должен быть доставлен не позднее 48:58
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:48:48 INFO  View:261 - order checked
+2018-12-25 20:49:02 INFO  Controller:58 - loading properties
+2018-12-25 20:49:02 INFO  Controller:102 - loading complete
+2018-12-25 20:49:02 INFO  Controller:60 - creating model
+2018-12-25 20:49:02 INFO  Controller:62 - downloading data from file
+2018-12-25 20:49:02 INFO  Controller:207 - creating graphs
+2018-12-25 20:49:02 INFO  Controller:256 - downloading completed
+2018-12-25 20:49:02 INFO  Controller:65 - creating view
+2018-12-25 20:49:02 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:49:02 INFO  Controller:72 - creating delivers
+2018-12-25 20:49:05 INFO  View:216 - added order
+2018-12-25 20:49:05 INFO  Controller:275 - simulating delivering
+2018-12-25 20:49:05 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 49:23
+Должен быть доставлен не позднее 49:36
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:49:24 INFO  View:261 - order checked
+2018-12-25 20:49:27 INFO  View:216 - added order
+2018-12-25 20:49:27 INFO  Controller:275 - simulating delivering
+2018-12-25 20:49:27 INFO  View:95 - Заказ №2
+Доставка в точку 1
+Будет доставлен в 49:44
+Должен быть доставлен не позднее 49:58
+Доставляет Машина №2
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:50:37 INFO  Controller:58 - loading properties
+2018-12-25 20:50:37 INFO  Controller:102 - loading complete
+2018-12-25 20:50:37 INFO  Controller:60 - creating model
+2018-12-25 20:50:37 INFO  Controller:62 - downloading data from file
+2018-12-25 20:50:37 INFO  Controller:207 - creating graphs
+2018-12-25 20:50:37 INFO  Controller:256 - downloading completed
+2018-12-25 20:50:37 INFO  Controller:65 - creating view
+2018-12-25 20:50:37 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:50:37 INFO  Controller:72 - creating delivers
+2018-12-25 20:50:40 INFO  View:216 - added order
+2018-12-25 20:50:40 INFO  Controller:275 - simulating delivering
+2018-12-25 20:50:40 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 50:57
+Должен быть доставлен не позднее 51:10
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:51:21 INFO  Controller:58 - loading properties
+2018-12-25 20:51:21 INFO  Controller:102 - loading complete
+2018-12-25 20:51:21 INFO  Controller:60 - creating model
+2018-12-25 20:51:21 INFO  Controller:62 - downloading data from file
+2018-12-25 20:51:21 INFO  Controller:207 - creating graphs
+2018-12-25 20:51:21 INFO  Controller:256 - downloading completed
+2018-12-25 20:51:21 INFO  Controller:65 - creating view
+2018-12-25 20:51:21 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:51:21 INFO  Controller:72 - creating delivers
+2018-12-25 20:51:24 INFO  View:216 - added order
+2018-12-25 20:51:24 INFO  Controller:275 - simulating delivering
+2018-12-25 20:51:24 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 51:41
+Должен быть доставлен не позднее 51:54
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:52:55 INFO  View:261 - order checked
+2018-12-25 20:57:22 INFO  Controller:58 - loading properties
+2018-12-25 20:57:22 INFO  Controller:102 - loading complete
+2018-12-25 20:57:22 INFO  Controller:60 - creating model
+2018-12-25 20:57:22 INFO  Controller:62 - downloading data from file
+2018-12-25 20:57:22 INFO  Controller:207 - creating graphs
+2018-12-25 20:57:22 INFO  Controller:256 - downloading completed
+2018-12-25 20:57:22 INFO  Controller:65 - creating view
+2018-12-25 20:57:22 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:57:22 INFO  Controller:72 - creating delivers
+2018-12-25 20:57:25 INFO  View:216 - added order
+2018-12-25 20:57:25 INFO  Controller:275 - simulating delivering
+2018-12-25 20:57:25 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 57:42
+Должен быть доставлен не позднее 57:56
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:57:44 INFO  View:261 - order checked
+2018-12-25 20:57:47 INFO  View:216 - added order
+2018-12-25 20:57:47 INFO  Controller:275 - simulating delivering
+2018-12-25 20:57:47 INFO  View:95 - Заказ №2
+Доставка в точку 1
+Будет доставлен в 58:4
+Должен быть доставлен не позднее 58:18
+Доставляет Машина №2
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 20:59:50 INFO  Controller:58 - loading properties
+2018-12-25 20:59:50 INFO  Controller:102 - loading complete
+2018-12-25 20:59:50 INFO  Controller:60 - creating model
+2018-12-25 20:59:50 INFO  Controller:62 - downloading data from file
+2018-12-25 20:59:50 INFO  Controller:207 - creating graphs
+2018-12-25 20:59:50 INFO  Controller:256 - downloading completed
+2018-12-25 20:59:50 INFO  Controller:65 - creating view
+2018-12-25 20:59:50 INFO  Controller:68 - creating pizzeria
+2018-12-25 20:59:50 INFO  Controller:72 - creating delivers
+2018-12-25 20:59:53 INFO  View:216 - added order
+2018-12-25 20:59:53 INFO  Controller:275 - simulating delivering
+2018-12-25 20:59:53 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 0:10
+Должен быть доставлен не позднее 0:23
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:00:13 INFO  View:261 - order checked
+2018-12-25 21:04:17 INFO  Controller:58 - loading properties
+2018-12-25 21:04:17 INFO  Controller:102 - loading complete
+2018-12-25 21:04:17 INFO  Controller:60 - creating model
+2018-12-25 21:04:17 INFO  Controller:62 - downloading data from file
+2018-12-25 21:04:17 INFO  Controller:207 - creating graphs
+2018-12-25 21:04:17 INFO  Controller:256 - downloading completed
+2018-12-25 21:04:17 INFO  Controller:65 - creating view
+2018-12-25 21:04:17 INFO  Controller:68 - creating pizzeria
+2018-12-25 21:04:17 INFO  Controller:72 - creating delivers
+2018-12-25 21:04:22 INFO  View:216 - added order
+2018-12-25 21:04:22 INFO  Controller:275 - simulating delivering
+2018-12-25 21:04:22 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 4:39
+Должен быть доставлен не позднее 4:52
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:04:47 INFO  View:261 - order checked
+2018-12-25 21:05:07 INFO  View:216 - added order
+2018-12-25 21:05:07 INFO  Controller:275 - simulating delivering
+2018-12-25 21:05:07 INFO  View:95 - Заказ №2
+Доставка в точку 1
+Будет доставлен в 5:24
+Должен быть доставлен не позднее 5:37
+Доставляет Машина №2
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:06:06 INFO  Controller:58 - loading properties
+2018-12-25 21:06:06 INFO  Controller:102 - loading complete
+2018-12-25 21:06:06 INFO  Controller:60 - creating model
+2018-12-25 21:06:06 INFO  Controller:62 - downloading data from file
+2018-12-25 21:06:06 INFO  Controller:207 - creating graphs
+2018-12-25 21:06:06 INFO  Controller:256 - downloading completed
+2018-12-25 21:06:06 INFO  Controller:65 - creating view
+2018-12-25 21:06:06 INFO  Controller:68 - creating pizzeria
+2018-12-25 21:06:06 INFO  Controller:72 - creating delivers
+2018-12-25 21:06:09 INFO  View:216 - added order
+2018-12-25 21:06:09 INFO  Controller:275 - simulating delivering
+2018-12-25 21:06:09 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 6:27
+Должен быть доставлен не позднее 6:40
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:06:28 INFO  View:263 - order checked
+2018-12-25 21:06:34 INFO  View:216 - added order
+2018-12-25 21:06:34 INFO  Controller:275 - simulating delivering
+2018-12-25 21:06:34 INFO  View:95 - Заказ №2
+Доставка в точку 1
+Будет доставлен в 6:51
+Должен быть доставлен не позднее 7:5
+Доставляет Машина №2
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:07:06 INFO  Controller:58 - loading properties
+2018-12-25 21:07:06 INFO  Controller:102 - loading complete
+2018-12-25 21:07:06 INFO  Controller:60 - creating model
+2018-12-25 21:07:06 INFO  Controller:62 - downloading data from file
+2018-12-25 21:07:06 INFO  Controller:207 - creating graphs
+2018-12-25 21:07:06 INFO  Controller:256 - downloading completed
+2018-12-25 21:07:06 INFO  Controller:65 - creating view
+2018-12-25 21:07:06 INFO  Controller:68 - creating pizzeria
+2018-12-25 21:07:06 INFO  Controller:72 - creating delivers
+2018-12-25 21:07:10 INFO  View:216 - added order
+2018-12-25 21:07:10 INFO  Controller:275 - simulating delivering
+2018-12-25 21:07:10 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 7:28
+Должен быть доставлен не позднее 7:41
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:07:30 INFO  View:263 - order checked
+2018-12-25 21:07:38 INFO  View:216 - added order
+2018-12-25 21:07:38 INFO  Controller:275 - simulating delivering
+2018-12-25 21:07:38 INFO  View:95 - Заказ №2
+Доставка в точку 1
+Будет доставлен в 7:56
+Должен быть доставлен не позднее 8:9
+Доставляет Машина №2
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:08:49 INFO  Controller:58 - loading properties
+2018-12-25 21:08:49 INFO  Controller:102 - loading complete
+2018-12-25 21:08:49 INFO  Controller:60 - creating model
+2018-12-25 21:08:49 INFO  Controller:62 - downloading data from file
+2018-12-25 21:08:49 INFO  Controller:207 - creating graphs
+2018-12-25 21:08:49 INFO  Controller:256 - downloading completed
+2018-12-25 21:08:49 INFO  Controller:65 - creating view
+2018-12-25 21:08:49 INFO  Controller:68 - creating pizzeria
+2018-12-25 21:08:49 INFO  Controller:72 - creating delivers
+2018-12-25 21:08:51 INFO  View:216 - added order
+2018-12-25 21:08:51 INFO  Controller:275 - simulating delivering
+2018-12-25 21:08:51 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 9:9
+Должен быть доставлен не позднее 9:22
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:09:10 INFO  View:263 - order checked
+2018-12-25 21:09:14 INFO  View:216 - added order
+2018-12-25 21:09:14 INFO  Controller:275 - simulating delivering
+2018-12-25 21:09:14 INFO  View:95 - Заказ №2
+Доставка в точку 2
+Будет доставлен в 9:48
+Должен быть доставлен не позднее 9:44
+Доставляет Машина №2
+Путь:
+Second street между Точка №1 и Точка №3
+
+2018-12-25 21:10:22 INFO  Controller:58 - loading properties
+2018-12-25 21:10:22 INFO  Controller:102 - loading complete
+2018-12-25 21:10:22 INFO  Controller:60 - creating model
+2018-12-25 21:10:22 INFO  Controller:62 - downloading data from file
+2018-12-25 21:10:22 INFO  Controller:207 - creating graphs
+2018-12-25 21:10:22 INFO  Controller:256 - downloading completed
+2018-12-25 21:10:22 INFO  Controller:65 - creating view
+2018-12-25 21:10:22 INFO  Controller:68 - creating pizzeria
+2018-12-25 21:10:22 INFO  Controller:72 - creating delivers
+2018-12-25 21:10:25 INFO  View:216 - added order
+2018-12-25 21:10:25 INFO  Controller:275 - simulating delivering
+2018-12-25 21:10:25 INFO  View:95 - Заказ №1
+Доставка в точку 1
+Будет доставлен в 10:42
+Должен быть доставлен не позднее 10:55
+Доставляет Машина №1
+Путь:
+First street между Точка №1 и Точка №2
+
+2018-12-25 21:10:51 INFO  View:261 - order checked

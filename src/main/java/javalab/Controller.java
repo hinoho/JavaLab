@@ -14,6 +14,8 @@ import org.jgrapht.graph.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
+
 import org.apache.log4j.Logger;
 import org.jgrapht.util.SupplierUtil;
 
@@ -332,18 +334,6 @@ public class Controller{
                     }
                 }
             }
-            for(Order order : orders){
-                if(!order.isDone()){
-                    if(currentTime > order.getDoneTime()){
-                        order.setDone(true);
-                    }
-                }
-            }
-            for (Model.Data data:  model.getData()) {
-                if(orders.get(data.getNumber()-1).isDone())
-                data.setStatus("да");
-
-            }
             if(activeOrders.size()==0)isDone=true;
             if(alarm>pizzeria.getOrders().size()/2){
                 logger.warn("Too many alarms. Increase amount of delivers");
@@ -378,5 +368,22 @@ public class Controller{
     public String getTime(double time){
         long t=Math.round(time/1000);
         return t/60%60 + ":" + t%60;
+    }
+
+    public List<String> getFinishedOrders(){
+        return model.getPizzeria().getOrders().stream().filter(order -> (!order.getChecked())&&System.currentTimeMillis() > order.getDoneTime()).map(order -> order.toString()).collect(Collectors.toList());
+    }
+
+    public void checkOrder(String number){
+        model.getPizzeria().getOrders().get(Integer.valueOf(number)-1).setChecked(true);
+    }
+
+    public void updateModelData(){
+        List<Order> orders = model.getPizzeria().getOrders();
+        for (Model.Data data:  model.getData()) {
+            if(orders.get(data.getNumber()-1).getChecked())
+                data.setStatus("да");
+
+        }
     }
 }
