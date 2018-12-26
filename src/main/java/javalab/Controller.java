@@ -235,7 +235,7 @@ public class Controller{
                     name.append(lines[i]).append(" ");
                 }
                 for(Transport transport : types) {
-                    Road road = new Road(name.toString().trim(), transport, Double.valueOf(lines[2]));
+                    Road road = new Road(name.toString().trim(), transport, Double.valueOf(lines[2]), p[0].getId(), p[1].getId());
                     switch (transport) {
                         case CAR:
                             car.addEdge(p[0], p[1], road);
@@ -303,27 +303,31 @@ public class Controller{
                         iterator.remove();
                         iterator.previous();
                         iterator.remove();
-                        view.show(firstWay.getEdgeList(),secondWay.getEdgeList(),firstOrder,secondOrder,optimalDeliver,currentTime+firstWay.getWeight()*1000,currentTime+secondWay.getWeight()*1000);
+                        view.show(firstWay.getEdgeList(),secondWay.getEdgeList(),firstOrder,secondOrder,optimalDeliver,currentTime+firstWay.getWeight()*1000,currentTime+secondWay.getWeight()*1000, firstOrder.getDelay());
                         GraphWalk<Point, Road> wayBack = (GraphWalk<Point, Road>) findWay(secondOrder.getLocation(), pizzeria.getLocation(), optimalDeliver.getTransport());
-                        optimalDeliver.setTime(currentTime + firstWay.getWeight()*1000 + TIME_FOR_STOP + secondWay.getWeight()*1000 + TIME_FOR_STOP + wayBack.getWeight()*1000);
+                        optimalDeliver.setTime(currentTime + firstWay.getWeight()*1000 + TIME_FOR_STOP + secondWay.getWeight()*1000 + TIME_FOR_STOP + wayBack.getWeight()*1000 + firstOrder.getDelay() + secondOrder.getDelay());
                         optimalDeliver.setFree(false);
                         firstOrder.setClose(true);
                         secondOrder.setClose(true);
                         firstOrder.setDoneTime(firstOrder.getTime()+firstWay.getWeight()*1000);
                         secondOrder.setDoneTime(secondOrder.getTime()+firstWay.getWeight()*1000+TIME_FOR_STOP+secondWay.getWeight()*1000);
-                        model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName());
-                        model.addData(secondOrder.getId(), start.toString(), secondOrder.getLocation().toString(), getTime(secondOrder.getTime()), optimalDeliver.getName());
+                        model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName(), firstOrder.getDelay());
+                        model.addData(secondOrder.getId(), start.toString(), secondOrder.getLocation().toString(), getTime(secondOrder.getTime()), optimalDeliver.getName(), secondOrder.getDelay());
+
+                        firstOrder.setWay(firstWay.getEdgeList());
+                        secondOrder.setWay(secondWay.getEdgeList());
                     }
                 }
                 else if(!firstWay.isEmpty()) {
                     iterator.remove();
-                    model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName());
-                    view.show(firstWay.getEdgeList(), firstOrder, optimalDeliver, currentTime+firstWay.getWeight()*1000);
+                    model.addData(firstOrder.getId(), start.toString(), firstOrder.getLocation().toString(), getTime(firstOrder.getTime()), optimalDeliver.getName(),firstOrder.getDelay());
+                    view.show(firstWay.getEdgeList(), firstOrder, optimalDeliver, currentTime+firstWay.getWeight()*1000, firstOrder.getDelay());
 
-                    optimalDeliver.setTime(currentTime + firstWay.getWeight()*2000 + TIME_FOR_STOP);
+                    optimalDeliver.setTime(currentTime + firstWay.getWeight()*2000 + TIME_FOR_STOP + firstOrder.getDelay());
                     optimalDeliver.setFree(false);
                     firstOrder.setDoneTime(firstOrder.getTime()+firstWay.getWeight()*1000);
                     firstOrder.setClose(true);
+                    firstOrder.setWay(firstWay.getEdgeList());
                 }
             }
             //обновляется статус доставщиков
@@ -381,6 +385,10 @@ public class Controller{
     public void updateModelData(){
         List<Order> orders = model.getPizzeria().getOrders();
         for (Model.Data data:  model.getData()) {
+            Order order = orders.get(data.getNumber()-1);
+            if(order.getDelay()>0 && order.getDoneTime() + order.getDelay() < System.currentTimeMillis()){
+                data.setStatus("задержка");
+            }
             if(orders.get(data.getNumber()-1).getChecked())
                 data.setStatus("да");
 

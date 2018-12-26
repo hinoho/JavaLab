@@ -1,37 +1,26 @@
 package javalab;
 
-import java.io.File;
-import java.util.List;
-import java.util.Scanner;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.control.*;
-
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.cell.ComboBoxListCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-
-import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javalab.map.Road;
@@ -39,6 +28,14 @@ import javalab.pizzeria.Delivering;
 import javalab.pizzeria.Order;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
+
+import java.io.File;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Представление отображает запрашиваемую информацию на экран
@@ -81,12 +78,13 @@ public class View extends Application{
 	 * @param transport - доставщик
 	 * @param time      - время доставки
 	 */
-	public void show(List<Road> way, Order order, Delivering transport, double time) {
+	public void show(List<Road> way, Order order, Delivering transport, double time , double delay) {
 		StringBuilder stringBuilder = new StringBuilder("Заказ №" + order.getId() + '\n' +
 				"Доставка в точку " + order.getLocation().getId() + '\n' +
 				"Будет доставлен в " + getTime(time) + '\n' +
 				"Должен быть доставлен не позднее " + getTime(order.getTime() + 30000) + '\n' +
-				"Доставляет " + transport.getName() + '\n');
+				"Доставляет " + transport.getName() + '\n'+
+				"Задержка " + delay + '\n');
 
 		stringBuilder.append("Путь:\n");
 		for (Road road : way) {
@@ -95,7 +93,7 @@ public class View extends Application{
 		logger.info(stringBuilder);
 	}
 
-	public void show(List<Road> way1, List<Road> way2, Order order1, Order order2, Delivering transport, double time1, double time2) {
+	public void show(List<Road> way1, List<Road> way2, Order order1, Order order2, Delivering transport, double time1, double time2, double delay) {
 
 
 		StringBuilder stringBuilder = new StringBuilder(
@@ -108,7 +106,9 @@ public class View extends Application{
 						"Доставка в точку " + order2.getLocation().getId() + '\n' +
 						"Будет доставлен в " + getTime(time2) + '\n' +
 						"Должен быть доставлен не позднее " + getTime(order2.getTime() + 30000) + '\n' +
-						"Доставляет " + transport.getName() + '\n');
+						"Доставляет " + transport.getName() + '\n'+
+						"Задержка " + delay + '\n');
+
 
 		stringBuilder.append("Путь до первого заказа:\n");
 		for (Road road : way1) {
@@ -131,22 +131,29 @@ public class View extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setAlwaysOnTop(true);
+		primaryStage.setX(0);
 		final TableView<Model.Data> table = new TableView<Model.Data>();
-		FlowPane fp = new FlowPane(20, 20);
+		FlowPane fp = new FlowPane();
 		fp.setCache(false);
 		fp.setOrientation(Orientation.VERTICAL);
 		fp.setAlignment(Pos.BASELINE_CENTER);
-		Scene scene = new Scene(fp, 1000, 1000);
+		Scene scene = new Scene(fp, 700, 1000);
 		primaryStage.setTitle("Доставка пиццы");
 		primaryStage.setScene(scene);
 
 		//menubar
 		MenuBar menuBar = new MenuBar();
 		Menu menuAbout = new Menu("Помощь");
+		Menu menuFile = new Menu("Файл");
 
-		menuBar.getMenus().addAll(menuAbout);
+		menuBar.getMenus().addAll(menuFile, menuAbout);
+
+		MenuItem menuUploadFile = new MenuItem("Загрузить файл");
 		MenuItem menuAboutItem = new MenuItem("О программе");
 		menuAbout.getItems().add(menuAboutItem);
+		menuFile.getItems().add(menuUploadFile);
+
 		menuBar.useSystemMenuBarProperty();
 		menuBar.setPrefWidth(scene.getWidth());
 		fp.getChildren().add(menuBar);
@@ -174,83 +181,123 @@ public class View extends Application{
 		});
 
 
+		menuUploadFile.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				FileChooser fc = new FileChooser();
+				fc.setTitle("Откройте файл с картой");
+				File file = fc.showOpenDialog(primaryStage);
+				if (file != null) {
+					controller.downloadFromFile(file);
+
+				}
+			}
+		});
+
+
 
 		/*
 		 * order part
 		 */
 
 		//textfield
-		HBox orderDetailBox = new HBox(30);
-		orderDetailBox.setPadding(new Insets(0, 20, 20, 20));
-
-
-		Label placeOrderLabel = new Label("В какую точку заказ:");
-		final TextField textWhere = new TextField();
-		textWhere.setPrefWidth(100);
-		orderDetailBox.getChildren().add(placeOrderLabel);
-		orderDetailBox.getChildren().add(textWhere);
-		fp.getChildren().add(orderDetailBox);
-
 		HBox orderbox = new HBox();
-		orderbox.setMaxHeight(300);
 		fp.getChildren().add(orderbox);
 
+		VBox makeorderbox = new VBox(10);
+		makeorderbox.setPadding(new Insets(10,20,0,20));
+		orderbox.getChildren().add(makeorderbox);
+		Label placeOrderLabel = new Label("В какую точку заказ:");
+		placeOrderLabel.setPadding(new Insets(10,0,0,0));
+		final TextField textWhere = new TextField();
+		textWhere.setPrefWidth(100);
+		makeorderbox.getChildren().add(placeOrderLabel);
+		makeorderbox.getChildren().add(textWhere);
+
+
 		//button
-		HBox makeOrderBox = new HBox(30);
-		makeOrderBox.setPadding(new Insets(0, 20, 20, 20));
-		final Label orderStatusLabel = new Label("Сделайте заказ");
-		makeOrderBox.getChildren().add(orderStatusLabel);
+
+
 
 		final Button orderButton = new Button("Сделать заказ");
-		makeOrderBox.getChildren().add(orderButton);
+		makeorderbox.getChildren().add(orderButton);
 
-		final Label errLabel = new Label("Неправильно введена точка!");
+		final Label errLabel = new Label("Заказ поступил в систему");
+		errLabel.setPadding(new Insets(10,0,10,0));
+		errLabel.setStyle("-fx-text-fill: #000000");
 		errLabel.setVisible(false);
-		makeOrderBox.getChildren().add(errLabel);
+		makeorderbox.getChildren().add(errLabel);
 		orderButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (!textWhere.getText().equals("") && (Integer.valueOf(textWhere.getText()) >0) & (Integer.valueOf(textWhere.getText()) < 8) && (textWhere.getText().length() != 0)) {
-					orderStatusLabel.setText("Заказ поступил в систему");
+				if (!textWhere.getText().equals("") && (Integer.valueOf(textWhere.getText()) >1) & (Integer.valueOf(textWhere.getText()) < 8) && (textWhere.getText().length() != 0)) {
+					errLabel.setText("Заказ поступил в систему");
+					errLabel.setStyle("-fx-text-fill: black");
+					errLabel.setVisible(true);
+					//errLabel.setStyle("-fx-text-fill: black");
 					controller.addOrder(Integer.valueOf(textWhere.getText()));
 					logger.info("added order");
 					textWhere.setText("");
 					controller.run();
 					errLabel.setVisible(false);
+					table.setItems(FXCollections.observableArrayList(model.getData()));
 				}
 				else
+					errLabel.setText("Неправильно введена точка");
+					errLabel.setStyle("-fx-text-fill: red");
 					errLabel.setVisible(true);
 				textWhere.setText("");
 			}
 		});
 
-		orderbox.getChildren().add(makeOrderBox);
 
 
+
+		VBox madeorders = new VBox(10);
+		madeorders.setPadding(new Insets(0,20,0,20));
+		orderbox.getChildren().add(madeorders);
 		final Label listTitle = new Label("Выполненные заказы");
-		makeOrderBox.getChildren().add(listTitle);
+		listTitle.setPadding(new Insets(10,0,10,0));
+		madeorders.getChildren().add(listTitle);
+
+		VBox deliveredOrders = new VBox(10);
+		orderbox.getChildren().add(deliveredOrders);
+		Label delivered = new Label("Доставленные заказы: ");
+		delivered.setPadding(new Insets(10,0,10,0));
+		deliveredOrders.getChildren().add(delivered);
 
 		final ListView<String> listView = new ListView(FXCollections.observableArrayList(controller.getFinishedOrders()));
-		listView.setMaxWidth(100);
+		listView.setMaxWidth(200);
 		listView.setMaxHeight(100);
-		orderDetailBox.getChildren().add(listView);
+		deliveredOrders.getChildren().add(listView);
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> listView.setItems(FXCollections.observableArrayList(controller.getFinishedOrders()))));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent ae) {
+				listView.setItems(FXCollections.observableArrayList(controller.getFinishedOrders()));
+				controller.updateModelData();
+				table.setItems(FXCollections.observableArrayList(model.getData()));
+				table.refresh();
+			}
+		}));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 
 		Label checkOrder = new Label("Введите номер проверенного заказа:");
+		checkOrder.setPadding(new Insets(10,0,10,0));
 		final TextField checkedOrder = new TextField();
-		checkedOrder.setPrefWidth(100);
-		makeOrderBox.getChildren().add(checkOrder);
-		makeOrderBox.getChildren().add(checkedOrder);
+		checkedOrder.setPrefWidth(50);
+		madeorders.getChildren().add(checkedOrder);
 
-		final Button checkButton = new Button("Проверить заказ");
-		makeOrderBox.getChildren().add(checkButton);
+		final Button checkButton = new Button("Завершить заказ");
+		madeorders.getChildren().add(checkButton);
 
 		final Label errLabel2 = new Label("Неправильно введен номер заказа");
+		errLabel2.setPadding(new Insets(10,0,10,0));
+		errLabel2.setStyle("-fx-text-fill: red");
 		errLabel2.setVisible(false);
-		makeOrderBox.getChildren().add(errLabel2);
+		madeorders.getChildren().add(errLabel2);
+
 		checkButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -263,6 +310,7 @@ public class View extends Application{
 					controller.checkOrder(checkedOrder.getText());
 					controller.updateModelData();
 					table.setItems(FXCollections.observableArrayList(model.getData()));
+					table.refresh();
 					errLabel.setVisible(false);
 				}
 				else
@@ -274,18 +322,68 @@ public class View extends Application{
 		 * map
 		 * */
 
+		/////////
 		VBox mapox = new VBox();
+		mapox.setMinHeight(200);
 		//mapox.setPadding(new Insets(0,0,0,20));
-		Image mapImage = new Image(new File("src/main/resources/map.png").toURI().toString());
-		ImageView mapView = new ImageView(mapImage);
-		mapView.setCache(true);
-		mapView.setViewport(new Rectangle2D(-20,0,400,200));
-		mapView.setImage(mapImage);
-		mapox.getChildren().add(mapView);
-		System.out.println("Image loaded? " + !mapImage.isError());
+		//Image mapImage = new Image(new File("src/main/resources/map.png").toURI().toString());
+		//ImageView mapView = new ImageView(mapImage);
+		//mapView.setCache(true);
+		//mapView.setViewport(new Rectangle2D(-20,0,400,200));
+		//mapView.setImage(mapImage);
+		//mapox.getChildren().add(mapView);
+		//System.out.println("Image loaded? " + !mapImage.isError());
+
+		//////////////////
+		Graph mapGrap = new SingleGraph("Карта города");
+		mapGrap.setStrict(true);
+
+		String styleSheet =
+				"node {" + "fill-color: black, green;" + "}";
+		mapGrap.addAttribute("ui.stylesheet", styleSheet);
+
+
+		mapGrap.addNode("1");
+		mapGrap.getNode("1").setAttribute("ui.label", 1);
+		mapGrap.addNode("2");
+		mapGrap.getNode("2").setAttribute("ui.label", 2);
+		mapGrap.addNode("3");
+		mapGrap.getNode("3").setAttribute("ui.label", 3);
+		mapGrap.addNode("4");
+		mapGrap.getNode("4").setAttribute("ui.label", 4);
+		mapGrap.addNode("5");
+		mapGrap.getNode("5").setAttribute("ui.label", 5);
+		mapGrap.addNode("6");
+		mapGrap.getNode("6").setAttribute("ui.label", 6);
+		mapGrap.addNode("7");
+		mapGrap.getNode("7").setAttribute("ui.label", 7);
+
+		mapGrap.addEdge("12", "1", "2");
+		mapGrap.getEdge("12").setAttribute("ui.label", 10);
+		mapGrap.addEdge("13", "1", "3");
+		mapGrap.getEdge("13").setAttribute("ui.label", 20);
+		mapGrap.addEdge("24", "2", "4");
+		mapGrap.getEdge("24").setAttribute("ui.label", 20);
+		mapGrap.addEdge("25", "2", "5");
+		mapGrap.getEdge("25").setAttribute("ui.label", 20);
+		mapGrap.addEdge("34", "3", "4");
+		mapGrap.getEdge("34").setAttribute("ui.label", 20);
+		mapGrap.addEdge("36", "3", "6");
+		mapGrap.getEdge("36").setAttribute("ui.label", 10);
+		mapGrap.addEdge("45", "4", "5");
+		mapGrap.getEdge("45").setAttribute("ui.label", 15);
+		mapGrap.addEdge("47", "4", "7");
+		mapGrap.getEdge("47").setAttribute("ui.label", 10);
+		mapGrap.addEdge("57", "5", "7");
+		mapGrap.getEdge("57").setAttribute("ui.label", 12);
+		mapGrap.addEdge("67", "6", "7");
+		mapGrap.getEdge("67").setAttribute("ui.label", 20);
+
+
+		mapGrap.display();
 
 		fp.getChildren().add(mapox);
-
+		///////////
 
 
 		//separator
@@ -304,15 +402,12 @@ public class View extends Application{
 		TableView
 		 */
 		VBox orderStatusBox = new VBox();
-		orderStatusBox.setPadding(new Insets(0,0,0,20));
+		orderStatusBox.setPadding(new Insets(0,20,0,20));
 		fp.getChildren().add(orderStatusBox);
 
 
-		//Button updateButton = new Button("Обновить данные");
-		//fp.getChildren().addAll(updateButton);
-		//orderStatusBox.getChildren().add(updateButton);
-		//table.setMaxHeight(200);
-		table.setMaxWidth(672);
+		table.setMaxHeight(250);
+		table.setMaxWidth(fp.getWidth());
 
 
 		//table.setPadding(new Insets(20,20,20,20));
@@ -353,16 +448,37 @@ public class View extends Application{
 					if (!isEmpty()) {
 
 						if(item.equals("нет"))
-							currentRow.setStyle("-fx-background-color:lightcoral");
+							currentRow.setStyle("-fx-background-color:#ff9c9c");
+						else if(item.equals("да"))
+							currentRow.setStyle("-fx-background-color:#adffa4");
 						else
-							currentRow.setStyle("-fx-background-color:lightgreen");
+							currentRow.setStyle("-fx-background-color:#fff478");
 					}
 				}
 			};
 
 		});
+		table.setRowFactory(tv -> {
+			TableRow<Model.Data> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if(event.getClickCount() == 1 && !row.isEmpty()){
+					Order order = model.getPizzeria().getOrders().get(row.getItem().getNumber()-1);
+					for(Edge edge : mapGrap.getEdgeSet()){
+						edge.addAttribute("ui.style", "fill-color: black;");
+					}
+					for(String road : order.getWay()){
+						mapGrap.getEdge(road).addAttribute("ui.style", "fill-color: green;");
+
+					}
+				}
+
+			});
+			return row;
+
+		});
 
 		table.setItems(FXCollections.observableArrayList(model.getData()));
+		table.refresh();
 		table.getColumns().addAll(number, start, end, courier, time, status);
 		orderStatusBox.getChildren().add(table);
 

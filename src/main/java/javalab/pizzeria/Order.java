@@ -1,6 +1,11 @@
 package javalab.pizzeria;
 
 import javalab.map.Point;
+import javalab.map.Road;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Класс заказа
@@ -10,11 +15,31 @@ public class Order {
     private int id;
     //активен ли заказ
     private boolean isClose = false;
-    private boolean isDone = false;
     //Время, когда будет сделан заказ
     private double time;
     private double doneTime;
     private boolean checked;
+    private int delay;
+    private List<String> way = new ArrayList<>();
+
+    public List<String> getWay() {
+        return way;
+    }
+
+    public void setWay(List<Road> roads) {
+        for(Road road : roads){
+            way.add((road.getStart() + 1) + "" + (road.getEnd() + 1));
+        }
+    }
+
+    public int getRandomDelay(){
+        int arr[] = {0,0,0,1,1,2,3};
+        return arr[new Random().nextInt(7)];
+    }
+
+    public int getDelay() {
+        return delay;
+    }
 
     public boolean getChecked() {
         return checked;
@@ -55,6 +80,7 @@ public class Order {
         this.id = id;
         this.location = location;
         this.time = timeBeforeOrder;
+        delay = getRandomDelay();
     }
 
     /**

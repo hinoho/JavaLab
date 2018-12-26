@@ -12,6 +12,8 @@ public class Road extends DefaultWeightedEdge {
     private String name;
     private Transport transport;
     private double length;
+    private int start;
+    private int end;
 
     /**
      * Создает новый экземпляр дороги
@@ -19,10 +21,20 @@ public class Road extends DefaultWeightedEdge {
      * @param transport - тип транспорта, который может по ней перемещаться
      * @param length - длина
      */
-    public Road(String name, Transport transport, double length) {
+    public Road(String name, Transport transport, double length, int start, int end) {
         this.name = name;
         this.transport = transport;
         this.length = length;
+        this.start = start;
+        this.end = end;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getEnd() {
+        return end;
     }
 
     /**

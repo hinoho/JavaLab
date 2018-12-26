@@ -25,8 +25,8 @@ public class Model {
 		return data;
 	}
 
-	public void addData(int number, String start, String end, String time, String courier){
-		data.add(new Data(number, start, end, time, courier,"нет"));
+	public void addData(int number, String start, String end, String time, String courier, int delay){
+		data.add(new Data(number, start, end, time, courier,"нет", delay));
 	}
 
 	public class Data{
@@ -36,14 +36,16 @@ public class Model {
 		public String time;
 		public String courier;
 		public String status;
+		public int delay;
 
-		public Data(int number, String start, String end, String time, String courier, String status) {
+		public Data(int number, String start, String end, String time, String courier, String status, int delay) {
 			this.number = number;
 			this.start = start;
 			this.end = end;
 			this.time = time;
 			this.courier = courier;
 			this.status = status;
+			this.delay = delay;
 		}
 
 		public String getStatus() {
@@ -93,7 +95,15 @@ public class Model {
 		public String getCourier() {
 			return courier;
 		}
-	}
+
+        public int getDelay() {
+            return delay;
+        }
+
+        public void setDelay(int delay) {
+            this.delay = delay;
+        }
+    }
 
 	/**
 	 * Возвращает список точек на карте
